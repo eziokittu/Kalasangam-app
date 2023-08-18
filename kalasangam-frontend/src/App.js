@@ -10,9 +10,8 @@ import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Footer from './components/footer/Footer';
 import About from './components/main/About';
+import Products from './components/main/Products';
 import React from 'react';
-
-
 
 function App() {
   return (
@@ -21,6 +20,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Main homeImage={IMAGES.image_home}/>} />
         <Route exact path='/about' element={<About />} />
+        <Route exact path='/products' element={<Products />} />
       </Routes>
       <Footer />
     </BrowserRouter>

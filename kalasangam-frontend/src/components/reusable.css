@@ -128,4 +128,8 @@
  .main {
    overflow: hidden; /* For animation ScrollReveal */
  }
+
+.insideBody {
+  margin-top: 4rem;
+}
  

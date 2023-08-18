@@ -36,7 +36,7 @@ export default function Main(props) {
             
          </section>
 
-         {/* <!--==================== POPULAR ====================--> */}
+         {/* <!--==================== PRODUCTS ====================--> */}
          <section className="popular section" id="popular">
             
          </section>
