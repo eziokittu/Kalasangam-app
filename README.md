@@ -10,7 +10,7 @@ To run the frontend part follow these steps ...
 3. Open an IDE (say VSCODE) to that directory
 4. open terminal
 5. write the following commands and press enter
-     cd Kalasangam-frontend
-     npm install
-     npm start
+     i.      cd Kalasangam-frontend
+     ii.     npm install
+     iii.    npm start
 6. this should run in your web browser "http://localhost:3000/"
