@@ -1,0 +1,94 @@
+.header{
+    position: fixed;
+    width: 100%;
+    /* background-image: linear-gradient(to right,rgb(255, 192, 203) 30% , rgb(0, 255, 174)); */
+    background-color: hsla(0, 0%, 100%, .2);
+    backdrop-filter: blur(24px);
+    --web-backdrop-filter: blur(24px); 
+    box-shadow: 0 0 50px rgba(106, 57, 165, 0.995);
+    top: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+ }
+.nav{
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ .nav__logo{
+    font-size: 20px;
+    color: var(--title-color);
+    font-family: var(--second-font);
+    font-weight: var(--font-semi-bold);
+ }
+ .nav__toggle,
+ .nav__close{
+    display: flex;
+    font-size: 1.25rem;
+    color: var(--title-color);
+    cursor: pointer;
+ }
+ .nav__list{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    column-gap: 2.5rem;
+ }
+ .nav__link{
+    color: var(--title-color);
+    font-family: var(--second-font);
+    font-weight: var(--font-medium);
+  }
+ .nav__form{
+    display: grid;
+    row-gap: 1rem;
+ }
+ .nav__input{
+    padding: .7rem .1rem;
+    background-color: var(--container-color);
+ }
+ 
+ .nav__search,
+ .nav__login{
+    font-size: 1rem;
+    display:inline-flex;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+ }
+ .nav__inputbox input{
+    height: 50px;
+    background: transparent;   
+    font-size: .8em;
+    color: #000000;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(184, 160, 160);
+    opacity:1; /* Firefox */
+  }
+/* Navigation for mobile devices */
+@media screen and (max-width: 1023px) {
+    .nav__menu{
+      position: fixed;
+      top: -300%; 
+      left: 0;
+      background-color: hsl(0, 0%, 0%, .3);
+      width: 100%;  
+      padding-block: 4rem;
+      backdrop-filter: blur(24px);
+      --webkit-backdrop-filter: blur(24px); /*for safari user*/
+      transition: top .2s;
+    }   
+ }
+
+/* Show menu */
+
+
+/* Add blur to header */
+
+/* Active link */
+
+
