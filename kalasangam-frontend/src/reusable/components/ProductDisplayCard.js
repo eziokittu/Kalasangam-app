@@ -1,12 +1,13 @@
 import React from 'react';
+import './ProductDisplayCard.css'
 
 function ProductDisplayCard({ title, description, imageUrl }) {
   return (
-    <div className="product-card">
+    <article className="product">
       <img src={imageUrl} alt={title} />
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </div>
+      <h2>{title}</h2>
+      <p className='description'>{description}</p>
+    </article>
   );
 }
 

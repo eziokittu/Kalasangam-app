@@ -1,4 +1,3 @@
-
 import ProductDisplayCard from'../../reusable/components/ProductDisplayCard';
 import './Products.css';
 import '../../reusable/reusable.css'; // Adjust the path based on your structure
@@ -23,9 +22,9 @@ function Products() {
   };
 
   return (
-    <div className="products-container">
+    <div className="">
       <h2>Products</h2>
-      <div className="product">
+      <div className="products">
         {products.map((product) => (
           <ProductDisplayCard
             key={product._id}
