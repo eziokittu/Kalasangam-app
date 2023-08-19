@@ -1,31 +1,31 @@
 import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
-import '../reusable.css'; // Adjust the path based on your structure
+import '../../reusable/reusable.css'; // Adjust the path based on your structure
 import 'remixicon/fonts/remixicon.css'; // Import Remix Icons CSS
 
-export default function Header() {
+export default function Header(props) {
   return (
     <>
 		<header className="header" id="header">
         <nav className="nav container">
-           <Link to="/" className="nav__logo"><i className="ri-leaf-fill"></i>KalaSangam</Link>
+           <Link to="/" className="nav__logo"><i className="ri-leaf-fill"></i>{props.appname}</Link>
             <div className="nav__menu" id="nav-menu">
                <ul className="nav__list">
                    <li className="nav__item">
-                       <Link to="/" className="nav__link active-link">Home</Link>
+                       <Link to="/" className="nav__link active-link">{props.names[0]}</Link>
                    </li>
 
                    <li className="nav__item">
-                       <Link to="/About" className="nav__link">About</Link>
+                       <Link to="/About" className="nav__link">{props.names[1]}</Link>
                    </li>
 
                    <li className="nav__item">
-                       <Link to="/products" className="nav__link">Products</Link>
+                       <Link to="/products" className="nav__link">{props.names[2]}</Link>
                    </li>
 
                    <li className="nav__item">
-                       <Link to="/Explore" className="nav__link">Explore</Link>
+                       <Link to="/create-listing" className="nav__link">{props.names[3]}</Link>
                    </li>
                </ul>
                {/* <!-- close button --> */}

@@ -1,6 +1,7 @@
 import React from 'react'
 
-import '../reusable.css'; // Adjust the path based on your structure
+import './About.css';
+import '../../reusable/reusable.css'; // Adjust the path based on your structure
 
 export default function About() {
   return (

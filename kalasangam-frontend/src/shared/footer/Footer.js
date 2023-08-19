@@ -1,6 +1,6 @@
 import React from 'react'
 import './Footer.css';
-import '../../components/reusable.css'; // Adjust the path based on your structure
+import '../../reusable/reusable.css'; // Adjust the path based on your structure
 import 'remixicon/fonts/remixicon.css'; // Import Remix Icons CSS
 
 export default function Footer() {

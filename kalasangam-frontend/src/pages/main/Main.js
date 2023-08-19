@@ -1,6 +1,6 @@
 import React from 'react'
 import './Main.css';
-import '../reusable.css'; // Adjust the path based on your structure
+import '../../reusable/reusable.css'; // Adjust the path based on your structure
 
 export default function Main(props) {
   return (
