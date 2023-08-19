@@ -17,7 +17,7 @@ export default function Header(props) {
                    </li>
 
                    <li className="nav__item">
-                       <Link to="/About" className="nav__link">{props.names[1]}</Link>
+                       <Link to="/categories" className="nav__link">{props.names[1]}</Link>
                    </li>
 
                    <li className="nav__item">

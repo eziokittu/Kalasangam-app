@@ -1,4 +1,4 @@
-// import './CreateListing.css';
+import './CreateListing.css';
 import '../../reusable/reusable.css';
 import Button from '../../reusable/FormElements/Button';
 import ImageUpload from '../../reusable/FormElements/ImageUpload';
@@ -42,9 +42,9 @@ function CreateListing() {
   };
 
   return (
-    <div className='container insideBody'>
-      <h2>Create Listing</h2>
+    <div className='form-container'>
       <form onSubmit={handleSubmit}>
+        <h1>Create Listing</h1>
         <div>
           <label>Title</label>
           <input

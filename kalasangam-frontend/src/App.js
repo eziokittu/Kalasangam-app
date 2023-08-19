@@ -19,11 +19,11 @@ function App() {
     <BrowserRouter>
       <Header
         appname='KalaSangam'
-        names={['Home', 'About', 'Products', 'Create Listing']} 
+        names={['Home', 'Categories', 'Products', 'Create Listing']} 
       />
       <Routes>
         <Route exact path='/' element={<Main homeImage={IMAGES.image_home}/>} />
-        <Route exact path='/about' element={<About />} />
+        <Route exact path='/categories' element={<About />} />
         <Route exact path='/products' element={<Products />} />
         <Route exact path='/create-listing' element={<CreateListing />} />
       </Routes>
