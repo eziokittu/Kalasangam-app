@@ -1,6 +1,10 @@
 // import './CreateListing.css';
 import '../../reusable/reusable.css';
-
+import Button from '../../reusable/FormElements/Button';
+import ImageUpload from '../../reusable/FormElements/ImageUpload';
+import Input from '../../reusable/FormElements/Input';
+import ErrorModal from '../../reusable/UIElements/ErrorModal';
+import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../reusable/util/validators';
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -64,6 +68,45 @@ function CreateListing() {
         <button type="submit" disabled={!isFormValid}>Create</button>
       </form>
     </div>
+    // <React.Fragment>
+    //   <ErrorModal error={error} onClear={clearError} />
+    //   <form className="place-form" onSubmit={placeSubmitHandler}>
+    //     {isLoading && <LoadingSpinner asOverlay />}
+    //     <Input
+    //       id="title"
+    //       element="input"
+    //       type="text"
+    //       label="Title"
+    //       validators={[VALIDATOR_REQUIRE()]}
+    //       errorText="Please enter a valid title."
+    //       onInput={inputHandler}
+    //     />
+    //     <Input
+    //       id="description"
+    //       element="textarea"
+    //       label="Description"
+    //       validators={[VALIDATOR_MINLENGTH(5)]}
+    //       errorText="Please enter a valid description (at least 5 characters)."
+    //       onInput={inputHandler}
+    //     />
+    //     <Input
+    //       id="address"
+    //       element="input"
+    //       label="Address"
+    //       validators={[VALIDATOR_REQUIRE()]}
+    //       errorText="Please enter a valid address."
+    //       onInput={inputHandler}
+    //     />
+    //     <ImageUpload
+    //       id="image"
+    //       onInput={inputHandler}
+    //       errorText="Please provide an image."
+    //     />
+    //     <Button type="submit" disabled={!formState.isValid}>
+    //       ADD PLACE
+    //     </Button>
+    //   </form>
+    // </React.Fragment>
   );
 }
 
