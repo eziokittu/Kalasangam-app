@@ -3,29 +3,40 @@ import ProductDisplayCard from'../../reusable/components/ProductDisplayCard';
 import './Products.css';
 import '../../reusable/reusable.css'; // Adjust the path based on your structure
 
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-export default function Products() {
+function Products() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/products');
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Error fetching products', error);
+    }
+  };
+
   return (
-    <main>
-				<h1 className='insideBody'>Shop Our Products</h1>
-        <section className="products">
-            {/* <article className="product">
-                <img src="product1.jpg" alt="Product 1"/>
-                <h2>Product 1</h2>
-                <p className="price">$19.99</p>
-                <p className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <button className="add-to-cart">Learn more</button>
-            </article> */}
-            <ProductDisplayCard>
-              image=''
-              title='old jewellery'
-              price='19.99$'
-              description="The is an old form of jewellry"
-            </ProductDisplayCard>
-            
-            {/* <!-- Add more product articles here --> */}
-        </section>
-    </main>
-  )
+    <div className="products-container">
+      <h2>Products</h2>
+      <div className="product">
+        {products.map((product) => (
+          <ProductDisplayCard
+            key={product._id}
+            title={product.title}
+            description={product.description}
+            imageUrl={product.imageUrl}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
+
+export default Products;

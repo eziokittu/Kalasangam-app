@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-export default function ProductDisplayCard(props) {
+function ProductDisplayCard({ title, description, imageUrl }) {
   return (
-    <article className="product">
-			<img src={props.image} alt={props.title}/>
-			<h2>{props.title}</h2>
-			<p className="price">{props.price}</p>
-			<p className="description">{props.description}</p>
-			<button className="add-to-cart">Learn more</button>
-		</article>
-  )
+    <div className="product-card">
+      <img src={imageUrl} alt={title} />
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </div>
+  );
 }
+
+export default ProductDisplayCard;
