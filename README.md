@@ -2,7 +2,7 @@
 **Refer to the SRS document for details.** 
 A prototype is being created for the backend part, which will replace the backend for this website
 
-##--- **Members of this project** ---
+--- **Members of this project** ---
 1. Archisha Verma--------------------(Roll - 2105700)-------([GitHub Profile Link](https://github.com/archishaverma))
 2. Anuroop Roy-----------------------(Roll - 21051543)------([GitHub Profile Link](https://github.com/aroy1106))
 3. Bodhisatta Bhattacharjee (Me)----(Roll - 22057025)------([GitHub Profile Link](https://github.com/eziokittu))
