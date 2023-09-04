@@ -2,6 +2,17 @@
 Refer the SRS document for details. 
 A prototype is being created for the backend part, which will replace the backend for this website
 
+--- Members of this project ---
+1. Archisha Verma                    (Roll - 2105700)       ([GitHub Profile Link](https://github.com/archishaverma))
+2. Anuroop Roy                       (Roll - 21051543)      ([GitHub Profile Link](https://github.com/aroy1106))
+3. Bodhisatta Bhattacharjee (Me)     (Roll - 22057025)      ([GitHub Profile Link](https://github.com/eziokittu))
+4. Muskan Pritam                     (Roll - 2105974)       ([Github Profile Link](https://github.com/MuskanP2021))
+5. Pradyumna Poddar                  (Roll - 2105216)       (GitHub Profile Link - )
+6. Pratyush Adhikari                 (Roll - 2105810)       ([GitHub Profile Link](https://github.com/Pratyush-Adhikari1507))
+7. Sandali Dev Sinha                 (Roll - 21052448)      ([GitHub Profile Link](https://github.com/DevSinhaSandali))
+8. Shyamantak Mandal                 (Roll - 21052800)      (GitHub Profile Link - )
+
+
 #Preview Images
 ![home_1](https://github.com/eziokittu/Kalasangam-app/assets/52044555/265abf3f-2a08-4096-b49c-dbfa7dc4b631)
 
