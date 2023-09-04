@@ -1,5 +1,5 @@
 # Kalasangam-app
-Refer the SRS document for details
+Refer the SRS document for details. 
 A prototype is being created for the backend part, which will replace the backend for this website
 
 #Preview Images
