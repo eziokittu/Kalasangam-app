@@ -1,8 +1,8 @@
 # Kalasangam-app
-Refer the SRS document for details. 
+**Refer to the SRS document for details.** 
 A prototype is being created for the backend part, which will replace the backend for this website
 
---- Members of this project ---
+##--- **Members of this project** ---
 1. Archisha Verma--------------------(Roll - 2105700)-------([GitHub Profile Link](https://github.com/archishaverma))
 2. Anuroop Roy-----------------------(Roll - 21051543)------([GitHub Profile Link](https://github.com/aroy1106))
 3. Bodhisatta Bhattacharjee (Me)----(Roll - 22057025)------([GitHub Profile Link](https://github.com/eziokittu))
@@ -13,7 +13,7 @@ A prototype is being created for the backend part, which will replace the backen
 8. Shyamantak Mandal---------------(Roll - 21052800)------(GitHub Profile Link - )
 
 
-#Preview Images
+##Preview Images
 ![home_1](https://github.com/eziokittu/Kalasangam-app/assets/52044555/265abf3f-2a08-4096-b49c-dbfa7dc4b631)
 
 ![home_2](https://github.com/eziokittu/Kalasangam-app/assets/52044555/dfc27666-eafe-494e-bb49-1719d46d0160)
