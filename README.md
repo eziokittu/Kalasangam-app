@@ -1,5 +1,15 @@
 # Kalasangam-app
 
+
+
+
+
+
+
+
+
+
+
 backend work is going on!
 
 only the home screen is made in frontend (as made by Pratyush & Archisha).
