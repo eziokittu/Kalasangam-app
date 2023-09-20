@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const productsRoutes = require('./routes/products-routes');
 const usersRoutes = require('./routes/users-routes');
@@ -8,17 +9,16 @@ const HttpError = require('./models/http-error');
 
 // const multer = require('multer'); // For handling file uploads
 // const path = require('path');
-// const cors = require('cors'); // Import the cors package
 
 const app = express();
 
-// app.use(
-// 	cors({
-// 		origin: 'http://localhost:3000', // Replace with your frontend's URL
-// 		methods: ['GET', 'POST'], // Specify allowed HTTP methods
-// 		credentials: true, // Allow sending cookies and authentication headers
-// 	})
-// );
+app.use(
+	cors({
+		origin: 'http://localhost:3000', // Replace with your frontend's URL
+		methods: ['GET', 'POST'], // Specify allowed HTTP methods
+		credentials: true, // Allow sending cookies and authentication headers
+	})
+);
 
 // // Configure body parser
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -99,10 +99,15 @@ app.use((error, req, res, next) => {
 // const uriDB = 'mongodb+srv://eziokittu:southpoint19@cluster0.nmjiwwv.mongodb.net/kalasangam'; // ATLAS
 const uriDB = 'mongodb://localhost:27017/kalasangam'; // community server
 mongoose
-  .connect(uriDB)
+  .connect(uriDB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() =>{
     app.listen(5000);
+    console.log("LOG - Server running on port 5000");
   })
   .catch(err => {
     console.log(err);
+    console.log("LOG - Server failed to connect");
   });
