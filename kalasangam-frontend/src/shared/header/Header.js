@@ -25,7 +25,7 @@ export default function Header(props) {
                    </li>
 
                    <li className="nav__item">
-                       <Link to="/create-listing" className="nav__link">{props.names[3]}</Link>
+                       <Link to="/products/create-listing" className="nav__link">{props.names[3]}</Link>
                    </li>
                </ul>
                {/* <!-- close button --> */}
@@ -42,9 +42,9 @@ export default function Header(props) {
             <div className="nav__toggle" id="nav-toggle">
                <i className="ri-menu-4-fill"></i>
             </div>
-            {/* <!-- <div className="nav__login">
-                <i className="ri-login-circle-fill"></i>
-            </div> --> */}
+            <div className="nav__login">
+                <Link to="/auth" className="nav__link active-link">{props.names[4]}</Link>
+            </div>
        </nav>
      </header>
     </>
