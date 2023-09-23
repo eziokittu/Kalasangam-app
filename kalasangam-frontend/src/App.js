@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import React, { useState, useCallback } from 'react';
 
+import MainNavigation from './reusable/Navigation/MainNavigation';
 import Header from './shared/header/Header';
 import Footer from './shared/footer/Footer';
 import Main from './pages/main/Main';
@@ -61,10 +62,11 @@ function App() {
       }}
     >
       <BrowserRouter>
-        <Header
+        {/* <Header
           appname='KalaSangam'
           names={['Home', 'Categories', 'Products', 'Create Listing', 'Profile']} 
-        />
+        /> */}
+        <MainNavigation />
 
         <Routes>
           <Route exact path='/' element={<Main homeImage={IMAGES.image_home}/>} />
@@ -76,6 +78,7 @@ function App() {
 
         <Footer />
       </BrowserRouter>
+
     </AuthContext.Provider>
   );
 }

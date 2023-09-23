@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import MainHeader from './MainHeader';
 import NavLinks from './NavLinks';
@@ -23,7 +23,7 @@ const MainNavigation = props => {
       {drawerIsOpen && <Backdrop onClick={closeDrawerHandler} />}
       <SideDrawer show={drawerIsOpen} onClick={closeDrawerHandler}>
         <nav className="main-navigation__drawer-nav">
-          <NavLinks />
+          <NavLinks names={['Home', 'Categories', 'Products', 'Create Listing', 'Profile']} />
         </nav>
       </SideDrawer>
 
@@ -36,11 +36,11 @@ const MainNavigation = props => {
           <span />
           <span />
         </button>
-        <h1 className="main-navigation__title">
+        {/* <h1 className="main-navigation__title">
           <Link to="/">YourPlaces</Link>
-        </h1>
+        </h1> */}
         <nav className="main-navigation__header-nav">
-          <NavLinks />
+          <NavLinks names={['Home', 'Categories', 'Products', 'Create Listing', 'Profile']} />
         </nav>
       </MainHeader>
     </React.Fragment>

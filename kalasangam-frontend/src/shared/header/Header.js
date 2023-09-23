@@ -30,10 +30,6 @@ export default function Header(props) {
 					</nav>
 				</SideDrawer>
 
-				<MainHeader>
-
-				</MainHeader>
-
 				<div className="nav__menu" id="nav-menu">
 					<ul className="nav__list">
 						<li className="nav__item">
