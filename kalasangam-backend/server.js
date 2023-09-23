@@ -12,9 +12,10 @@ const HttpError = require('./models/http-error');
 
 const app = express();
 
+const frontendPort = 3003;
 app.use(
 	cors({
-		origin: 'http://localhost:3000', // Replace with your frontend's URL
+		origin: 'http://localhost:'+frontendPort, // Replace with your frontend's URL
 		methods: ['GET', 'POST'], // Specify allowed HTTP methods
 		credentials: true, // Allow sending cookies and authentication headers
 	})
