@@ -20,6 +20,7 @@ const NavLinks = props => {
       </li>
       {auth.isLoggedIn && (
         <li>
+          {/* <NavLink to={`/create-listing`}>{props.names[3]}</NavLink> */}
           <NavLink to={`/${auth.userId}/create-listing`}>{props.names[3]}</NavLink>
         </li>
         

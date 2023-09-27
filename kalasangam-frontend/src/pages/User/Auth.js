@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-
+import ImageUpload from '../../reusable/FormElements/ImageUpload';
 import Card from '../../reusable/UIElements/Card';
 import Input from '../../reusable/FormElements/Input';
 import Button from '../../reusable/FormElements/Button';
@@ -74,26 +74,32 @@ const Auth = () => {
             'Content-Type': 'application/json'
           }
         );
-        auth.login(responseData);
+        auth.login(responseData.userId, responseData.token);
       } catch (err) {
         console.log('ERROR logging in!');
       }
     } else {
       try {
+        const formData = new FormData();
+        formData.append('email', formState.inputs.email.value);
+        formData.append('name', formState.inputs.name.value);
+        formData.append('password', formState.inputs.password.value);
+        formData.append('image', formState.inputs.image.value);
         const responseData = await sendRequest(
           'http://localhost:5000/api/users/signup',
           'POST',
-          JSON.stringify({
-            name: formState.inputs.name.value,
-            email: formState.inputs.email.value,
-            password: formState.inputs.password.value
-          }),
-          {
-            'Content-Type': 'application/json'
-          }
+          // JSON.stringify({
+          //   name: formState.inputs.name.value,
+          //   email: formState.inputs.email.value,
+          //   password: formState.inputs.password.value
+          // }),
+          // {
+          //   'Content-Type': 'application/json'
+          // }
+          formData
         );
 
-        auth.login(responseData);
+        auth.login(responseData.userId, responseData.token);
         // auth.login(responseData.user.id);
       } catch (err) {
         console.log('ERROR signing in!');
@@ -102,7 +108,7 @@ const Auth = () => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <Card className="authentication">
         {isLoading && <LoadingSpinner asOverlay />}
@@ -118,6 +124,14 @@ const Auth = () => {
               validators={[VALIDATOR_REQUIRE()]}
               errorText="Please enter a name."
               onInput={inputHandler}
+            />
+          )}
+          {!isLoginMode && (
+            <ImageUpload
+              center
+              id="image"
+              onInput={inputHandler}
+              errorText="Please provide an image."
             />
           )}
           <Input
@@ -146,7 +160,7 @@ const Auth = () => {
           SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}
         </Button>
       </Card>
-    </>
+    </React.Fragment>
   );
 };
 

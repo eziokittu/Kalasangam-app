@@ -9,7 +9,7 @@ import {
 import React, { useState, useCallback } from 'react';
 
 import MainNavigation from './reusable/Navigation/MainNavigation';
-import Header from './shared/header/Header';
+// import Header from './shared/header/Header';
 import Footer from './shared/footer/Footer';
 import Main from './pages/main/Main';
 import About from './pages/about/About';
@@ -19,6 +19,7 @@ import { AuthContext } from './reusable/context/auth-context';
 import Auth from './pages/User/Auth';
 
 function App() {
+  // const auth = useContext(AuthContext);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(false);
@@ -37,7 +38,7 @@ function App() {
       <Routes>
         {/* <Route exact path="/" element={<Users />} />  */}
         {/* <Route exact path="/products" element={<Products />} /> */}
-        <Route exact path="/products/create-listing" element={<CreateListing />} />
+        <Route exact path="/:userid/create-listing" element={<CreateListing />} />
         {/* <Route exact path="/products/:productId" element={<UpdateProduct />} /> */}
         <Route path="/" element={<Navigate to="/" />} />
       </Routes>

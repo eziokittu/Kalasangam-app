@@ -8,27 +8,34 @@ export const useHttpClient = () => {
 
   const sendRequest = useCallback(
     async (url, method = 'GET', body = null, headers = {}) => {
+      console.log("Working --- 1");
       setIsLoading(true);
       const httpAbortCtrl = new AbortController();
       activeHttpRequests.current.push(httpAbortCtrl);
-
+      console.log("Working --- 2");
       try {
+        console.log("Working --- 3");
         const response = await fetch(url, {
           method,
           body,
           headers,
           signal: httpAbortCtrl.signal
         });
+        console.log("Working --- 4");
 
         const responseData = await response.json();
+        console.log("Working --- 5");
 
         activeHttpRequests.current = activeHttpRequests.current.filter(
           reqCtrl => reqCtrl !== httpAbortCtrl
         );
+        console.log("Working --- 6");
 
         if (!response.ok) {
+          console.log("Not Working --- 7");
           throw new Error(responseData.message);
         }
+        console.log("Working --- 7");
 
         setIsLoading(false);
         return responseData;

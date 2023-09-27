@@ -1,7 +1,6 @@
-const uuid = require('uuid');
 const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
-
+const fs = require('fs');
 const HttpError = require('../models/http-error');
 const Product = require('../models/product');
 const User = require('../models/user');
@@ -81,7 +80,7 @@ const getProductsByUserId = async (req, res, next) => {
   }
 
   res.json({
-    products: userWithProducts.producs.map(product =>
+    products: userWithProducts.products.map(product =>
       product.toObject({ getters: true })
     )
   });
@@ -94,24 +93,25 @@ const createProduct = async (req, res, next) => {
 		  new HttpError('Invalid inputs passed, please check your data!', 422)
     );
   }
-
-	const { title, description, creator } = req.body;
+	const { title, description } = req.body;
 
 	const createdProduct = new Product ({
 		title,
 		description,
-		image: 'https://images.unsplash.com/photo-1597655601841-214a4cfe8b2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1889&q=80',
-		creator
+    image: req.file.path,
+		creator: req.userData.userId
 	});
-
+  console.log("DEBUG ---- 2");
   // check if the user id provided exists or not
   let user;
   try{
-    user = await User.findById(creator);
+    user = await User.findById(req.userData.userId);
+    console.log("DEBUG ---- 3");
   }
   catch (err) {
+    console.log("DEBUG ---- 4");
     const error = new HttpError(
-      'Creating product failed[1], please try again!', 500
+      'Creating product failed[01], please try again!', 500
     );
     console.log(err);
     return next(error);
@@ -122,7 +122,7 @@ const createProduct = async (req, res, next) => {
     );
     return next(error);
   }
-  // console.log(user);
+  console.log(user);
 
 	try {
     // const sess = await mongoose.startSession();
@@ -170,6 +170,11 @@ const updateProduct = async (req, res, next) => {
     return next(error);
   }
 
+  if (product.creator.toString() !== req.userData.userId) {
+    const error = new HttpError('You are not allowed to edit this place.', 401);
+    return next(error);
+  }
+
 	product.title = title;
 	product.description = description;
 
@@ -190,7 +195,7 @@ const deleteProduct = async (req, res, next) => {
 
 	let product;
   try {
-    product = await Product.findById(productId);
+    product = await Product.findById(productId).populate('creator');;
   } catch (err) {
     const error = new HttpError(
       'Something went wrong[3], could not find product to delete. [1]',
@@ -203,6 +208,16 @@ const deleteProduct = async (req, res, next) => {
     const error = new HttpError('Could not find product for this id.', 404);
     return next(error);
   }
+
+  if (product.creator.id !== req.userData.userId) {
+    const error = new HttpError(
+      'You are not allowed to delete this product.',
+      401
+    );
+    return next(error);
+  }
+
+  const imagePath = product.image;
 
   try {
     // const sess = await mongoose.startSession();
@@ -224,6 +239,10 @@ const deleteProduct = async (req, res, next) => {
     return next(error);
   }
 
+  fs.unlink(imagePath, err => {
+    console.log(err);
+  });
+
   res.status(200).json({ message: 'Deleted product.' });
 };
 
@@ -235,9 +254,3 @@ module.exports = {
 	updateProduct,
 	deleteProduct
 };
-
-// {
-// 	"title" : "test title 1",
-// 	"description" : "test description 1",
-// 	"creator" : "u2"
-// }
