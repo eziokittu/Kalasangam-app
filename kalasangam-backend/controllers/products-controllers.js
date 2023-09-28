@@ -53,7 +53,7 @@ const getProductById = async (req, res, next) => {
 
 const getProductsByUserId = async (req, res, next) => {
   const userId = req.params.uid;
-  console.log("DEBUG -- products-controller -- working 1: userId = "+userId);
+  // console.log("DEBUG -- products-controller -- working 1: userId = "+userId);
   // let products;
   let userWithProducts;
   try {
@@ -81,7 +81,7 @@ const getProductsByUserId = async (req, res, next) => {
       product.toObject({ getters: true })
     )
   });
-  // console.log("DEBUG -- Products-Controller - Fetching all the USER's products successful!");
+  console.log("DEBUG -- Products-Controller - Fetching all the USER's products successful!");
 };
 
 const createProduct = async (req, res, next) => {
