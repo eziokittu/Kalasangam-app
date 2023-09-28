@@ -8,7 +8,7 @@ import './ProductItem.css';
 
 const ProductItem = props => {
   const { isLoading, error, clearError } = useHttpClient();
-  console.log("DEBUG - ProductItem.js -- "+props.image);
+  // console.log("DEBUG - ProductItem.js -- "+props.image);
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />

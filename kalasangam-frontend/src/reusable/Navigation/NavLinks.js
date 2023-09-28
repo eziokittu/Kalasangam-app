@@ -10,42 +10,39 @@ const NavLinks = props => {
   return (
     <ul className="nav-links">
       <li>
-        <NavLink to="/" exact>{props.names[0]}</NavLink>
+        <NavLink to="/" exact>Home</NavLink>
       </li>
       <li>
-        <NavLink to="/categories" exact>{props.names[1]}</NavLink>
+        <NavLink to="/categories" exact>Categories</NavLink>
       </li>
       <li>
-        <NavLink to="/products" exact>{props.names[2]}</NavLink>
+        <NavLink to="/products" exact>Products</NavLink>
       </li>
+
       {auth.isLoggedIn && (
         <li>
           {/* <NavLink to={`/create-listing`}>{props.names[3]}</NavLink> */}
-          <NavLink to={`/${auth.userId}/create-listing`}>{props.names[3]}</NavLink>
-        </li>
-        
-      )}
-      {!auth.isLoggedIn && (
-        <li className="nav__login">
-          <NavLink to="/auth" className="nav__link active-link">{props.names[4]}</NavLink>
+          <NavLink to={`/${auth.userId}/my-products`}>My Products</NavLink>
         </li>
       )}
-      
-      {/* {auth.isLoggedIn && (
+      {auth.isLoggedIn && (
         <li>
-          <NavLink to="/places/new">ADD PLACE</NavLink>
-        </li>
-      )}
-      {!auth.isLoggedIn && (
-        <li>
-          <NavLink to="/auth">AUTHENTICATE</NavLink>
+          {/* <NavLink to={`/create-listing`}>{props.names[3]}</NavLink> */}
+          <NavLink to={`/${auth.userId}/create-listing`}>Create Listing</NavLink>
         </li>
       )}
       {auth.isLoggedIn && (
         <li>
           <button onClick={auth.logout}>LOGOUT</button>
         </li>
-      )} */}
+      )}
+      
+      {!auth.isLoggedIn && (
+        <li className="nav__login">
+          <NavLink to="/auth" className="nav__link active-link">LOGIN</NavLink>
+        </li>
+      )}
+
     </ul>
   );
 };

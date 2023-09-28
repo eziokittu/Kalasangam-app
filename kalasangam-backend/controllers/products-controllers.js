@@ -6,32 +6,6 @@ const Product = require('../models/product');
 const User = require('../models/user');
 
 const getProducts = async (req, res, next) => {
-  // let products;
-
-  // try {
-  //   // products = await User.find({}).populate('products');
-  //   products = await Product.find();
-  // } catch (err) {
-  //   const error = new HttpError(
-  //     'Fetching products failed, please try again later',
-  //     500
-  //   );
-  //   return next(error);
-  // }
-
-  // // if (!products || products.length === 0) {
-  // if (!products || products.length===0) {
-  //   return next(
-  //     new HttpError('ERROR - Could not find products.', 404)
-  //   );
-  // }
-
-  // const allProducts = products.flatMap(user => user.products);
-  // res.json({
-  //   products: allProducts.map(product =>
-  //     product.toObject({ getters: true })
-  //   )
-  // });
   let allProducts;
   try {
     allProducts = await Product.find();
@@ -50,7 +24,7 @@ const getProducts = async (req, res, next) => {
   res.json({
     products: allProducts.map((product) => product.toObject({ getters: true })),
   });
-  console.log("DEBUG -- Products-Controller - Fetching all the products successful!");
+  // console.log("DEBUG -- Products-Controller - Fetching all the products successful!");
 };
 
 const getProductById = async (req, res, next) => {
@@ -79,11 +53,12 @@ const getProductById = async (req, res, next) => {
 
 const getProductsByUserId = async (req, res, next) => {
   const userId = req.params.uid;
-
+  console.log("DEBUG -- products-controller -- working 1: userId = "+userId);
   // let products;
   let userWithProducts;
   try {
     userWithProducts = await User.findById(userId).populate('products');
+    // console.log("DEBUG -- products-controller -- working 2");
   } catch (err) {
     const error = new HttpError(
       'Fetching products failed, please try again later',
@@ -92,6 +67,7 @@ const getProductsByUserId = async (req, res, next) => {
     return next(error);
   }
 
+  // console.log("DEBUG -- products-controller -- working 3");
   // if (!products || products.length === 0) {
   if (!userWithProducts || userWithProducts.products.length === 0) {
     return next(
@@ -99,11 +75,13 @@ const getProductsByUserId = async (req, res, next) => {
     );
   }
 
+  // console.log("DEBUG -- products-controller -- working 4");
   res.json({
     products: userWithProducts.products.map(product =>
       product.toObject({ getters: true })
     )
   });
+  // console.log("DEBUG -- Products-Controller - Fetching all the USER's products successful!");
 };
 
 const createProduct = async (req, res, next) => {
