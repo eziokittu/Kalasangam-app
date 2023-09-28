@@ -17,23 +17,26 @@ import Products from './pages/products/Products';
 import CreateListing from './pages/createListing/CreateListing';
 import { AuthContext } from './reusable/context/auth-context';
 import Auth from './pages/User/Auth';
+import { useAuth } from './reusable/hooks/auth-hook';
 
 function App() {
   // const auth = useContext(AuthContext);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(false);
-  const login = useCallback(uid => {
-    setIsLoggedIn(true);
-    setUserId(uid);
-  }, []);
-  const logout = useCallback(() => {
-    setIsLoggedIn(false);
-    setUserId(null);
-  }, []);
+  const { token, login, logout, userId } = useAuth();
+
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [userId, setUserId] = useState(false);
+  // const login = useCallback(uid => {
+  //   setIsLoggedIn(true);
+  //   setUserId(uid);
+  // }, []);
+  // const logout = useCallback(() => {
+  //   setIsLoggedIn(false);
+  //   setUserId(null);
+  // }, []);
 
   let myRoutes;
-  if (isLoggedIn) {
+  if (token) {
     myRoutes = (
       <Routes>
         {/* <Route exact path="/" element={<Users />} />  */}
@@ -56,7 +59,8 @@ function App() {
   return (
     <AuthContext.Provider
       value={{
-        isLoggedIn: isLoggedIn,
+        isLoggedIn: !!token,
+        token: token,
         userId: userId,
         login: login,
         logout: logout

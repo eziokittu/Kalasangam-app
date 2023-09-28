@@ -37,7 +37,7 @@ function CreateListing() {
     false
   );
 
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const productSubmitHandler = async event => {
     event.preventDefault();
@@ -47,12 +47,15 @@ function CreateListing() {
       formData.append('description', formState.inputs.description.value);
       formData.append('image', formState.inputs.image.value);
       // formData.append('creator', auth.userId);
+      console.log("DEBUG --- CreateListing --- 1");
       await sendRequest('http://localhost:5000/api/products', 'POST', formData, {
         Authorization: 'Bearer ' + auth.token
       });
-      history.push('/');
+      console.log("DEBUG --- CreateListing --- 2");
+      navigate('/');
+      console.log("DEBUG --- CreateListing --- 3");
     } catch (err) {
-      console.log("Error[1] in creating product!");
+      console.log("Error[1] in creating product!" + err);
     }
   };
 

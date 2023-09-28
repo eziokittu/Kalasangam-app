@@ -95,25 +95,28 @@ const createProduct = async (req, res, next) => {
   }
 	const { title, description } = req.body;
 
+  // Ensure that req.userData.userId contains a valid ObjectId of an existing user
+  console.log('User ID:', req.userData.userId);
+
 	const createdProduct = new Product ({
 		title,
 		description,
     image: req.file.path,
 		creator: req.userData.userId
 	});
-  console.log("DEBUG ---- 2");
+  // console.log("DEBUG ---- 2");
   // check if the user id provided exists or not
   let user;
   try{
     user = await User.findById(req.userData.userId);
-    console.log("DEBUG ---- 3");
+    // console.log("DEBUG ---- 3: ");
   }
   catch (err) {
-    console.log("DEBUG ---- 4");
+    // console.log("DEBUG ---- 4: " + err);
     const error = new HttpError(
       'Creating product failed[01], please try again!', 500
     );
-    console.log(err);
+    // console.log(err);
     return next(error);
   } 
   if (!user) {
@@ -122,7 +125,7 @@ const createProduct = async (req, res, next) => {
     );
     return next(error);
   }
-  console.log(user);
+  // console.log("DEBUG ---- 5: "+user);
 
 	try {
     // const sess = await mongoose.startSession();
@@ -135,6 +138,7 @@ const createProduct = async (req, res, next) => {
     await createdProduct.save( /* { session: session } */ );
     user.products.push(createdProduct);
     await user.save( /* { session: session } */ );
+    // console.log("DEBUG --- 6: Saved product in database");
   } 
 	catch (err) {
 		// console.log(err);
@@ -146,6 +150,7 @@ const createProduct = async (req, res, next) => {
   }
 	
 	res.status(201).json({product: createdProduct});
+  // console.log("DEBUG --- 7: everything works fine");
 };
 
 const updateProduct = async (req, res, next) => {
