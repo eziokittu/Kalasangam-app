@@ -1,43 +1,45 @@
-import ProductDisplayCard from'./ProductDisplayCard';
 import './Products.css';
 import '../../reusable/reusable.css'; // Adjust the path based on your structure
 
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import ProductList from './ProductList';
+import ErrorModal from '../../reusable/UIElements/ErrorModal';
+import LoadingSpinner from '../../reusable/UIElements/LoadingSpinner';
+import { useHttpClient } from '../../reusable/hooks/http-hook';
 
 function Products() {
-  const [products, setProducts] = useState([]);
+  const [loadedProducts, setLoadedProducts] = useState();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/api/products');
-      // Extract the 'products' array from the response data
-      const { products } = response.data;
-      setProducts(products);
-    } catch (error) {
-      console.error('Error fetching products', error);
-    }
-  };
+    const fetchproducts = async () => {
+      try {
+        const responseData = await sendRequest(
+          `http://localhost:5000/api/products/`
+        );
+        // console.log("DEBUG - Product.js --- 3: ");
+        setLoadedProducts(responseData.products);
+        // console.log("DEBUG - Product.js --- 4");
+      } catch (err) {
+        console.log("Error in fetching products: "+err);
+      }
+    };
+    fetchproducts();
+  }, [sendRequest]);
 
   return (
-    <div className="insideBody">
-      <h2>Products</h2>
-      <div className="products">
-        {products.map((product) => (
-          <ProductDisplayCard
-            key={product._id}
-            title={product.title}
-            description={product.description}
-            imageUrl={product.imageUrl}
-          />
-        ))}
-      </div>
-    </div>
+    <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
+      {isLoading && (
+        <div className="center">
+          <LoadingSpinner />
+        </div>
+      )}
+      {!isLoading && loadedProducts && (
+        <ProductList items={loadedProducts} />
+      )}
+    </React.Fragment>
   );
 }
 

@@ -40,10 +40,13 @@ export const useHttpClient = () => {
         setIsLoading(false);
         // console.log("WORKING -- HTTP-HOOK");
         return responseData;
-      } catch (err) {
-        setError(err.message);
-        setIsLoading(false);
-        throw err;
+      } 
+      catch (err) {
+        if(!err.message === 'The user aborted a request.'){
+          setError(err.message)
+          setIsLoading(false)
+          throw err
+        }
       }
     },
     []

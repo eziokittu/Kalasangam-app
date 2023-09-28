@@ -2,8 +2,8 @@ import React from 'react';
 
 import Card from '../../reusable/UIElements/Card';
 import ProductItem from './ProductItem';
-import Button from '../../reusable/FormElements/Button';
-import './ProductItem.css';
+// import Button from '../../reusable/FormElements/Button';
+import './ProductList.css';
 
 const ProductList = props => {
   if (props.items.length === 0) {
@@ -19,6 +19,7 @@ const ProductList = props => {
 
   return (
     <ul className="product-list">
+      {/* Products Found : {props.items.length} */}
       {props.items.map(product => (
         <ProductItem
           key={product.id}
@@ -27,7 +28,7 @@ const ProductList = props => {
           title={product.title}
           description={product.description}
           creatorId={product.creator}
-          onDelete={props.onDeleteproduct}
+          // onDelete={props.onDeleteproduct}
         />
       ))}
     </ul>

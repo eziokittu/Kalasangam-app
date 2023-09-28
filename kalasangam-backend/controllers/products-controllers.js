@@ -6,31 +6,51 @@ const Product = require('../models/product');
 const User = require('../models/user');
 
 const getProducts = async (req, res, next) => {
-  let products;
+  // let products;
 
+  // try {
+  //   // products = await User.find({}).populate('products');
+  //   products = await Product.find();
+  // } catch (err) {
+  //   const error = new HttpError(
+  //     'Fetching products failed, please try again later',
+  //     500
+  //   );
+  //   return next(error);
+  // }
+
+  // // if (!products || products.length === 0) {
+  // if (!products || products.length===0) {
+  //   return next(
+  //     new HttpError('ERROR - Could not find products.', 404)
+  //   );
+  // }
+
+  // const allProducts = products.flatMap(user => user.products);
+  // res.json({
+  //   products: allProducts.map(product =>
+  //     product.toObject({ getters: true })
+  //   )
+  // });
+  let allProducts;
   try {
-    products = await User.find({}).populate('products');
+    allProducts = await Product.find();
   } catch (err) {
     const error = new HttpError(
-      'Fetching products failed, please try again later',
+      'Fetching products failed, please try again later.',
       500
     );
     return next(error);
   }
 
-  // if (!products || products.length === 0) {
-  if (!products || products.length===0) {
-    return next(
-      new HttpError('ERROR - Could not find products.', 404)
-    );
+  if (!allProducts || allProducts.length === 0) {
+    return next(new HttpError('No products found.', 404));
   }
 
-  const allProducts = products.flatMap(user => user.products);
   res.json({
-    products: allProducts.map(product =>
-      product.toObject({ getters: true })
-    )
+    products: allProducts.map((product) => product.toObject({ getters: true })),
   });
+  console.log("DEBUG -- Products-Controller - Fetching all the products successful!");
 };
 
 const getProductById = async (req, res, next) => {
