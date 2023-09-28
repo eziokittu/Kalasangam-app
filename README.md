@@ -10,7 +10,7 @@ A prototype is being created for the backend part, which will replace the backen
 5. Pradyumna Poddar-----------------(Roll - 2105216)-------(GitHub Profile Link - )
 6. Pratyush Adhikari------------------(Roll - 2105810)-------([GitHub Profile Link](https://github.com/Pratyush-Adhikari1507))
 7. Sandali Dev Sinha------------------(Roll - 21052448)------([GitHub Profile Link](https://github.com/DevSinhaSandali))
-8. Shyamantak Mandal---------------(Roll - 21052800)------(GitHub Profile Link - )
+8. Shyamantak Mandal---------------(Roll - 21052800)------([GitHub Profile Link](https://github.com/Syamantakse))
 
 
 ##Preview Images
