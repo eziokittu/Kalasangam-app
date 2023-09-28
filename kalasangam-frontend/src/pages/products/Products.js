@@ -1,7 +1,8 @@
-import ProductDisplayCard from'../../reusable/components/ProductDisplayCard';
+import ProductDisplayCard from'./ProductDisplayCard';
 import './Products.css';
 import '../../reusable/reusable.css'; // Adjust the path based on your structure
 
+import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
