@@ -21,8 +21,15 @@ A prototype is being created for the backend part, which will replace the backen
 ![home_3](https://github.com/eziokittu/Kalasangam-app/assets/52044555/6862c680-c8f0-4c08-b114-4983ec8a28e1)
 
 backend work is going on!
+1. These things are working ---
+     a. login logout signup, 
+     b. create-listing (to create a product with a title, 1 image and description)
+     c. View products (view all the products)
+2. The other parts of the backend that are being worked on are -
+     a. categories section (for searching different products based on category), 
+     b. more info for the products (like Instagram / Facebook links, category tags...),
+     c. my products section (for updating and deleting products)
 
-only the home screen is made in frontend (as made by Pratyush & Archisha).
 To run the frontend part follow these steps ...
 ----For GUI----
 1. Open GitHub-desktop-client and click on "clone repository" in the top left options
@@ -33,4 +40,8 @@ To run the frontend part follow these steps ...
      i.      cd Kalasangam-frontend
      ii.     npm install
      iii.    npm start
-6. This should run in your web browser "http://localhost:3000/"
+6. Open a new terminal, Write the following commands and press enter
+     i.      cd Kalasangam-backend
+     ii.     npm install
+     iii.    npm start
+7. This should run in your web browser "http://localhost:3000/"
