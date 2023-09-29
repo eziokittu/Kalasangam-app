@@ -1,6 +1,8 @@
 import React from 'react';
 
-import Card from '../../reusable/UIElements/Card';
+import Card from 'react-bootstrap/Card';
+
+// import Card from '../../reusable/UIElements/Card';
 import ErrorModal from '../../reusable/UIElements/ErrorModal';
 import LoadingSpinner from '../../reusable/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../reusable/hooks/http-hook';
@@ -12,21 +14,42 @@ const ProductItem = props => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <li className="product-item">
+      {/* <li className="product-item">
         <Card className="product-item__content">
+
           {isLoading && <LoadingSpinner asOverlay />}
+
           <div className="product-item__image">
             <img
               src={`http://localhost:5000/${props.image}`}
               alt={props.title}
             />
           </div>
+
           <div className="product-item__info">
             <h2>{props.title}</h2>
             <p>{props.description}</p>
           </div>
+
         </Card>
-      </li>
+      </li> */}
+      <Card className="custom-card">
+        {props.isLoading && <LoadingSpinner asOverlay />}
+        <Card.Img variant="top" src={`http://localhost:5000/${props.image}`} />
+        <Card.Body>
+          <Card.Title>{props.title}</Card.Title>
+          <Card.Text>{props.description}</Card.Text>
+        </Card.Body>
+        <div className="card-links">
+          <Card.Link href='#'>Website</Card.Link>
+          <Card.Link href='#'>Instagram</Card.Link>
+          <Card.Link href='#'>Facebook</Card.Link>
+        </div>
+        <div className="card-links">
+          <Card.Link>Edit Product</Card.Link>
+          <Card.Link>Delete Product</Card.Link>
+        </div>
+      </Card>
     </React.Fragment>
   );
 };
