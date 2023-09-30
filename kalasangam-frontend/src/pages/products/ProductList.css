@@ -14,12 +14,8 @@
   }
   
   .custom-card-group .card {
-    flex: 1 1 calc(33.33% - 1rem);
-    margin: 0.5rem;
+    flex: 1 1 calc(33.33% - 1rem); /* Adjust the percentage as needed */
+    margin: 0.5rem; /* Add margin between cards */
     width: auto;
-    height: auto;
-    float: left;
-    margin-left: 10px;
-    max-width: calc(50% - 1rem);
-    max-height: calc(0% - 1rem);
+    max-width: calc(50% - 1rem); /* Adjust the percentage as needed */
   }

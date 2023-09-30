@@ -1,71 +1,40 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import React from 'react';
 
-import Modal from '../../reusable/UIElements/Modal';
+import Card from 'react-bootstrap/Card';
+
+// import Card from '../../reusable/UIElements/Card';
 import ErrorModal from '../../reusable/UIElements/ErrorModal';
 import LoadingSpinner from '../../reusable/UIElements/LoadingSpinner';
-import {AuthContext} from '../../reusable/context/auth-context';
 import { useHttpClient } from '../../reusable/hooks/http-hook';
 import './ProductItem.css';
 
 const ProductItem = props => {
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const auth = useContext(AuthContext);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
-
-  const showDeleteWarningHandler = () => {
-    setShowConfirmModal(true);
-  };
-
-  const cancelDeleteHandler = () => {
-    setShowConfirmModal(false);
-  };
-
-  const confirmDeleteHandler = async () => {
-    setShowConfirmModal(false);
-    try {
-      await sendRequest(
-        `http://localhost:5000/api/products/${props.id}`,
-        'DELETE',
-        null,
-        {
-          Authorization: 'Bearer ' + auth.token
-        }
-      );
-      props.onDelete(props.id);
-    } catch (err) {}
-  };
-
+  const { isLoading, error, clearError } = useHttpClient();
+  // console.log("DEBUG - ProductItem.js -- "+props.image);
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
+      {/* <li className="product-item">
+        <Card className="product-item__content">
 
-      <Modal
-        show={showConfirmModal}
-        onCancel={cancelDeleteHandler}
-        header="Are you sure?"
-        footerClass="place-item__modal-actions"
-        footer={
-          <React.Fragment>
-            <Button inverse onClick={cancelDeleteHandler}>
-              CANCEL
-            </Button>
-            <Button danger onClick={confirmDeleteHandler}>
-              DELETE
-            </Button>
-          </React.Fragment>
-        }
-      >
-        <p>
-          Do you want to proceed and delete this place? Please note that it
-          can't be undone thereafter.
-        </p>
-      </Modal>
+          {isLoading && <LoadingSpinner asOverlay />}
 
+          <div className="product-item__image">
+            <img
+              src={`http://localhost:5000/${props.image}`}
+              alt={props.title}
+            />
+          </div>
+
+          <div className="product-item__info">
+            <h2>{props.title}</h2>
+            <p>{props.description}</p>
+          </div>
+
+        </Card>
+      </li> */}
       <Card className="custom-card">
-        {isLoading && <LoadingSpinner asOverlay />}
+        {props.isLoading && <LoadingSpinner asOverlay />}
         <Card.Img variant="top" src={`http://localhost:5000/${props.image}`} />
         <Card.Body>
           <Card.Title>{props.title}</Card.Title>
@@ -76,16 +45,19 @@ const ProductItem = props => {
           <Card.Link href='#'>Instagram</Card.Link>
           <Card.Link href='#'>Facebook</Card.Link>
         </div>
-        {auth.userId === props.creatorId && (
         <div className="card-links">
+<<<<<<< HEAD
           <Link to={`/products/${props.id}`}>
             <Button>EDIT</Button>
           </Link>
           <Link>
             <Button onClick={showDeleteWarningHandler}>DELETE</Button>
           </Link>
+=======
+          <Card.Link>Edit Product</Card.Link>
+          <Card.Link>Delete Product</Card.Link>
+>>>>>>> parent of 524bc46 (Delete button works)
         </div>
-        )}
       </Card>
     </React.Fragment>
   );
