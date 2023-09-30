@@ -78,8 +78,8 @@ const ProductItem = props => {
         </div>
         {auth.userId === props.creatorId && (
         <div className="card-links">
-          <Link>
-            <Button to={`/products/${props.id}`}>EDIT</Button>
+          <Link to={`/products/${props.id}`}>
+            <Button>EDIT</Button>
           </Link>
           <Link>
             <Button onClick={showDeleteWarningHandler}>DELETE</Button>

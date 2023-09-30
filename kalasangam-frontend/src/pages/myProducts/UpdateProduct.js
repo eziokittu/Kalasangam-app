@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import Input from '../../reusable/FormElements/Input';
 import Button from '../../reusable/FormElements/Button';
@@ -13,14 +13,14 @@ import {
 import { useForm } from '../../reusable/hooks/form-hook';
 import { useHttpClient } from '../../reusable/hooks/http-hook';
 import { AuthContext } from '../../reusable/context/auth-context';
-import './PlaceForm.css';
+import './UpdateProduct.css';
 
-const UpdatePlace = () => {
+const Updateproduct = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [loadedPlace, setLoadedPlace] = useState();
-  const placeId = useParams().placeId;
-  const history = useHistory();
+  const [loadedProduct, setLoadedProduct] = useState();
+  const productId = useParams().productId;
+  const navigate = useNavigate();
 
   const [formState, inputHandler, setFormData] = useForm(
     {   
@@ -37,20 +37,20 @@ const UpdatePlace = () => {
   );
 
   useEffect(() => {
-    const fetchPlace = async () => {
+    const fetchProduct = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/places/${placeId}`
+          `http://localhost:5000/api/products/${productId}`
         );
-        setLoadedPlace(responseData.place);
+        setLoadedProduct(responseData.product);
         setFormData(
           {
             title: {
-              value: responseData.place.title,
+              value: responseData.product.title,
               isValid: true
             },
             description: {
-              value: responseData.place.description,
+              value: responseData.product.description,
               isValid: true
             }
           },
@@ -58,14 +58,14 @@ const UpdatePlace = () => {
         );
       } catch (err) {}
     };
-    fetchPlace();
-  }, [sendRequest, placeId, setFormData]);
+    fetchProduct();
+  }, [sendRequest, productId, setFormData]);
 
-  const placeUpdateSubmitHandler = async event => {
+  const productUpdateSubmitHandler = async event => {
     event.preventDefault();
     try {
       await sendRequest(
-        `http://localhost:5000/api/places/${placeId}`,
+        `http://localhost:5000/api/products/${productId}`,
         'PATCH',
         JSON.stringify({
           title: formState.inputs.title.value,
@@ -76,7 +76,7 @@ const UpdatePlace = () => {
           Authorization: 'Bearer ' + auth.token
         }
       );
-      history.push('/' + auth.userId + '/places');
+      navigate('/' + auth.userId + '/products');
     } catch (err) {}
   };
 
@@ -88,11 +88,11 @@ const UpdatePlace = () => {
     );
   }
 
-  if (!loadedPlace && !error) {
+  if (!loadedProduct && !error) {
     return (
       <div className="center">
         <Card>
-          <h2>Could not find place!</h2>
+          <h2>Could not find product!</h2>
         </Card>
       </div>
     );
@@ -101,8 +101,8 @@ const UpdatePlace = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      {!isLoading && loadedPlace && (
-        <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
+      {!isLoading && loadedProduct && (
+        <form className="product-form" onSubmit={productUpdateSubmitHandler}>
           <Input
             id="title"
             element="input"
@@ -111,7 +111,7 @@ const UpdatePlace = () => {
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a valid title."
             onInput={inputHandler}
-            initialValue={loadedPlace.title}
+            initialValue={loadedProduct.title}
             initialValid={true}
           />
           <Input
@@ -121,11 +121,11 @@ const UpdatePlace = () => {
             validators={[VALIDATOR_MINLENGTH(5)]}
             errorText="Please enter a valid description (min. 5 characters)."
             onInput={inputHandler}
-            initialValue={loadedPlace.description}
+            initialValue={loadedProduct.description}
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>
-            UPDATE PLACE
+            UPDATE Product
           </Button>
         </form>
       )}
@@ -133,4 +133,4 @@ const UpdatePlace = () => {
   );
 };
 
-export default UpdatePlace;
+export default Updateproduct;
