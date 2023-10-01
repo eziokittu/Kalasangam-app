@@ -14,7 +14,7 @@ const MyProducts = () => {
 
 	const userId = useParams().userid;
 	// const userId = "6515eb5748043807b0d81e53";
-  console.log("DEBUG -- MyProducts.js -- working 1: userId = " + (JSON.stringify(userId)));
+  // console.log("DEBUG -- MyProducts.js -- working 1: userId = " + (JSON.stringify(userId)));
   useEffect(() => {
     const fetchproducts = async () => {
       try {
