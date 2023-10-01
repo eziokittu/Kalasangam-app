@@ -28,7 +28,7 @@ const getProducts = async (req, res, next) => {
 };
 
 const getProductById = async (req, res, next) => {
-	const productId = req.params.pid; // { pid: 'p1' }
+	const productId = req.params.pid;
 
 	let product;
   try { 

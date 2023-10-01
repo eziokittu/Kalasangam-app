@@ -14,7 +14,7 @@ import Main from './pages/main/Main';
 import About from './pages/about/About';
 import Products from './pages/products/Products';
 import MyProducts from './pages/myProducts/MyProducts';
-// import UpdateProduct from './pages/myProducts/UpdateProduct';
+import UpdateProduct from './pages/myProducts/UpdateProduct';
 import CreateListing from './pages/createListing/CreateListing';
 import { AuthContext } from './reusable/context/auth-context';
 import Auth from './pages/User/Auth';
@@ -29,7 +29,7 @@ function App() {
       <Routes>
         <Route exact path="/:userid/create-listing" element={<CreateListing />} />
         <Route exact path="/:userid/my-products" element={<MyProducts />} />
-        {/* <Route exact path="/products/:productId" element={<UpdateProduct />} /> */}
+        <Route exact path="/products/:productId" element={<UpdateProduct />} />
         <Route path="/" element={<Navigate to="/" />} />
       </Routes>
     );

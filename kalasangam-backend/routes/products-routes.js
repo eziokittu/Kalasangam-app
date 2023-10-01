@@ -8,7 +8,7 @@ const router = express.Router();
 
 // GET requests
 router.get('/', productsController.getProducts)
-// router.get('/:pid', productsController.getProductById);
+router.get('/:pid', productsController.getProductById);
 router.get('/user/:uid', productsController.getProductsByUserId);
 
 router.use(checkAuth);
