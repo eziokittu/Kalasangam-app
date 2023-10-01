@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const categorySchema = new Schema({
     name: {type: String, required: true },
-    image: {type: String, required: true, minLength: 4 },
-    description: {type: String, required: true }
+    image: {type: String, required: true, minLength: 4 }
 });
 
 module.exports = mongoose.model('Category', categorySchema);

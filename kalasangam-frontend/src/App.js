@@ -11,7 +11,7 @@ import React from 'react';
 import MainNavigation from './reusable/Navigation/MainNavigation';
 import Footer from './shared/footer/Footer';
 import Main from './pages/main/Main';
-import About from './pages/about/About';
+import Categories from './pages/categories/Categories';
 import Products from './pages/products/Products';
 import MyProducts from './pages/myProducts/MyProducts';
 import UpdateProduct from './pages/myProducts/UpdateProduct';
@@ -57,7 +57,7 @@ function App() {
         <Routes>
           {/* <Route exact path='/' element={<MainNavigation/>} /> */}
           <Route exact path='/' element={<Main homeImage={IMAGES.image_home}/>} />
-          <Route exact path='/categories' element={<About />} />
+          <Route exact path='/categories' element={<Categories />} />
           <Route exact path='/products' element={<Products />} />
         </Routes>
         

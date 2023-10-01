@@ -1,0 +1,25 @@
+.category-list {
+    list-style: none;
+    margin-top: 5rem;
+    padding: 0;
+    width: 90%;
+    max-width: 40rem;
+  }
+  
+  .custom-card-group {
+    margin-top: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .custom-card-group .card {
+    flex: 1 1 calc(33.33% - 1rem); /* Adjust the percentage as needed */
+    margin: 0.5rem; /* Add margin between cards */
+    width: auto;
+    height: auto;
+    padding-left: auto;
+    padding-right: auto;
+    max-width: calc(50% - 1rem); /* Adjust the percentage as needed */
+    max-height: calc(30% - 1rem); /* Adjust the percentage as needed */
+  }

@@ -1,0 +1,17 @@
+.custom-card {
+    min-width: 20rem; /* Minimum width */
+    max-width: 32rem; /* Maximum width */
+    min-height: 20rem; /* Minimum height */
+    max-height: 32rem; /* Maximum height */
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+  
+.card-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
