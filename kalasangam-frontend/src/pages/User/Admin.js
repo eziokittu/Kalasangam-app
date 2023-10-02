@@ -10,7 +10,7 @@ const Admin = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
 	const auth = useContext(AuthContext);
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { sendRequest} = useHttpClient();
 
 	const adminSubmitHandler = async event => {
     event.preventDefault();

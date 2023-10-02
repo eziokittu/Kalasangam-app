@@ -16,8 +16,8 @@ const CategoryItem = props => {
       <Card className="category-card">
         {isLoading && <LoadingSpinner asOverlay />}
 
-        {/* <Card.Img variant="top" src={`http://localhost:5000/${props.image}`} /> */}
-        <Card.Img variant="top" src={`${props.image}`} />
+        <Card.Img variant="top" src={`http://localhost:5000/${props.image}`} />
+        {/* <Card.Img variant="top" src={`${props.image}`} /> */}
         <Card.Body>
           <Card.Title className='name'>{props.name}</Card.Title>
         </Card.Body>

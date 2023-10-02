@@ -25,72 +25,40 @@ const getCategories= async (req, res, next) => {
   // console.log("DEBUG -- categories-Controller - Fetching all the categories successful!");
 };
 
-// const createCategory = async (req, res, next) => {
-// 	const errors = validationResult(req);
-// 	if (!errors.isEmpty()) {
-//     return next(
-// 		  new HttpError('Invalid inputs passed, please check your data!', 422)
-//     );
-//   }
-// 	const { title, description } = req.body;
+const createCategory = async (req, res, next) => {
+  console.log("DEBUG -- categories-controller.js -- 0");
 
-//   // Ensure that req.userData.userId contains a valid ObjectId of an existing user
-//   console.log('User ID:', req.userData.userId);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log("DEBUG -- categories-controller.js -- 0.1: ");
+    return next(
+      new HttpError('Invalid inputs passed, please check your data!', 422)
+    );
+  }
+  const { name } = req.body;
 
-// 	const createdcategory = new category ({
-// 		title,
-// 		description,
-//     image: req.file.path,
-// 		creator: req.userData.userId
-// 	});
-//   // console.log("DEBUG ---- 2");
-//   // check if the user id provided exists or not
-//   let user;
-//   try{
-//     user = await User.findById(req.userData.userId);
-//     // console.log("DEBUG ---- 3: ");
-//   }
-//   catch (err) {
-//     // console.log("DEBUG ---- 4: " + err);
-//     const error = new HttpError(
-//       'Creating category failed[01], please try again!', 500
-//     );
-//     // console.log(err);
-//     return next(error);
-//   } 
-//   if (!user) {
-//     const error = new HttpError(
-//       'Cannot find user for the provided id', 404
-//     );
-//     return next(error);
-//   }
-//   // console.log("DEBUG ---- 5: "+user);
+  console.log("DEBUG -- categories-controller.js -- 1");
 
-// 	try {
-//     // const sess = await mongoose.startSession();
-//     // sess.startTransaction();
-//     // await createdcategory.save({ session: sess });
-//     // user.categorys.push(createdcategory);
-//     // await user.save({ session: sess, validateModifiedOnly: true, });
-//     // await sess.commitTransaction();
+  const createdcategory = new Category({
+    name,
+    image: req.file.path
+  });
+  console.log("DEBUG -- categories-controller.js -- 2");
+  try {
+    await createdcategory.save(); // Save the new category instance
+    console.log("DEBUG -- categories-controller.js -- 2.1: Saved category in database");
+  } catch (err) {
+    // console.log(err);
+    const error = new HttpError(
+      'Creating category failed[2], please try again.', 500
+    );
+    console.log(err);
+    return next(error);
+  }
 
-//     await createdcategory.save( /* { session: session } */ );
-//     user.categorys.push(createdcategory);
-//     await user.save( /* { session: session } */ );
-//     // console.log("DEBUG --- 6: Saved category in database");
-//   } 
-// 	catch (err) {
-// 		// console.log(err);
-//     const error = new HttpError(
-//       'Creating category failed[2], please try again.', 500
-//     );
-//     console.log(err);
-//     return next(error);
-//   }
-	
-// 	res.status(201).json({category: createdcategory});
-//   // console.log("DEBUG --- 7: everything works fine");
-// };
+  res.status(201).json({ category: createdcategory });
+  console.log("DEBUG -- categories-controller.js -- 7: everything works fine");
+};
 
 // const updateCategory = async (req, res, next) => {
 // 	const errors = validationResult(req);
@@ -191,8 +159,8 @@ const getCategories= async (req, res, next) => {
 // };
 
 module.exports = {
-	getCategories,
-	createCategory,
-	updateCategory,
-	deleteCategory
+  getCategories,
+  createCategory
+	// updateCategory,
+	// deleteCategory
 };

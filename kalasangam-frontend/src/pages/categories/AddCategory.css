@@ -1,0 +1,40 @@
+.admin-form {
+	text-align: center;
+	margin-top: 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.admin-form label {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+.admin-form input[type="text"] {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.admin-button {
+	background-color: #007bff;
+	color: rgb(89, 67, 67);
+	padding: 10px 20px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.admin-button:hover {
+	background-color: #0056b3; /* Darker shade of blue on hover */
+}
+
+.admin-button:active {
+	background-color: #004599; /* Even darker shade of blue on click */
+}

@@ -22,6 +22,8 @@ const CategoryList = props => {
       <CardGroup className='category-card-group'>
         {props.items.map(category => (
           <CategoryItem
+            key={category.id}
+            id={category.id}
             image={category.image}
             name={category.name}
           />

@@ -47,7 +47,8 @@ function CreateListing() {
       formData.append('description', formState.inputs.description.value);
       formData.append('image', formState.inputs.image.value);
       // formData.append('creator', auth.userId);
-      console.log("DEBUG --- CreateListing --- 1");
+      // console.log("DEBUG --- CreateListing --- 1: "+ formData.get('title') + ", " + JSON.stringify(formData.get('image')));
+      console.log("DEBUG --- CreateListing --- 1: ");
       await sendRequest('http://localhost:5000/api/products', 'POST', formData, {
         Authorization: 'Bearer ' + auth.token
       });
@@ -62,33 +63,44 @@ function CreateListing() {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <form className="product-form" onSubmit={productSubmitHandler}>
+      <form className="product-form " onSubmit={productSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay />}
-        <Input
-          id="title"
-          element="input"
-          type="text"
-          label="Title"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid title."
-          onInput={inputHandler}
-        />
-        <Input
-          id="description"
-          element="textarea"
-          label="Description"
-          validators={[VALIDATOR_MINLENGTH(3)]}
-          errorText="Please enter a valid description (at least 3 characters)."
-          onInput={inputHandler}
-        />
-        <ImageUpload
-          id="image"
-          onInput={inputHandler}
-          errorText="Please provide an image."
-        />
-        <Button type="submit" disabled={!formState.isValid}>
-          ADD PRODUCT
-        </Button>
+        <div className='title'>Create a Product Listing</div>
+        <div className='input-text'>
+          <Input
+            id="title"
+            element="input"
+            type="text"
+            label="Title"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid title."
+            onInput={inputHandler}
+          />
+        </div>
+
+        <div className='input-text'>
+          <Input
+            id="description"
+            element="textarea"
+            label="Description"
+            validators={[VALIDATOR_MINLENGTH(3)]}
+            errorText="Please enter a valid description (at least 3 characters)."
+            onInput={inputHandler}
+          />
+        </div>
+        
+        <div className='input-file'>
+          <ImageUpload
+            id="image"
+            onInput={inputHandler}
+            errorText="Please provide an image."
+          />
+        </div>
+        <div className='button-submit'>
+          <Button type="submit" disabled={!formState.isValid}>
+            ADD PRODUCT
+          </Button>
+        </div>
       </form>
     </React.Fragment>
   );

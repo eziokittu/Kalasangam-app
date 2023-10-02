@@ -6,7 +6,7 @@ import {
   Navigate,
   Route,
 } from 'react-router-dom';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 
 import MainNavigation from './reusable/Navigation/MainNavigation';
 import Footer from './shared/footer/Footer';
@@ -16,6 +16,7 @@ import Products from './pages/products/Products';
 import MyProducts from './pages/myProducts/MyProducts';
 import UpdateProduct from './pages/myProducts/UpdateProduct';
 import CreateListing from './pages/createListing/CreateListing';
+import AddCategory from './pages/categories/AddCategory';
 import { AuthContext } from './reusable/context/auth-context';
 import Auth from './pages/User/Auth';
 import Admin from './pages/User/Admin';
@@ -23,9 +24,17 @@ import { useAuth } from './reusable/hooks/auth-hook';
 
 function App() {
   const { token, login, logout, userId } = useAuth();
+  const auth = useContext(AuthContext);
 
   let myRoutes;
-  if (token) {
+  if (token && auth.isAdmin){
+    myRoutes = (
+      <Routes>
+        <Route exact path="/products/:productId" element={<UpdateProduct />} />
+        <Route exact path="/admin/create-category" element={<AddCategory />} />
+      </Routes>
+    );
+  } else if (token) {
     myRoutes = (
       <Routes>
         <Route exact path="/:userid/create-listing" element={<CreateListing />} />
@@ -49,6 +58,7 @@ function App() {
         isLoggedIn: !!token,
         token: token,
         userId: userId,
+        isAdmin: false,
         login: login,
         logout: logout
       }}
