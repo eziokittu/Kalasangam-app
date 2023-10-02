@@ -129,7 +129,14 @@ img {
   overflow: hidden; /* For animation ScrollReveal */
 }
 
-.insideBody {
-margin-top: 4rem;
+.title {
+  font-size: xx-large;
 }
- 
+
+.center {
+  text-align: center;
+}
+
+.insideBody {
+  margin-top: 4rem;
+}

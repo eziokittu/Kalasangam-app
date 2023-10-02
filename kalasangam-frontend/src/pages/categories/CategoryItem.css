@@ -1,8 +1,15 @@
-.custom-card {
-    min-width: 20rem; /* Minimum width */
-    max-width: 32rem; /* Maximum width */
-    min-height: 20rem; /* Minimum height */
-    max-height: 32rem; /* Maximum height */
+.name {
+    text-align: center;
+    overflow: auto;
+    font-size: x-large;
+    color: black;
+}
+
+.category-card {
+    min-width: 20rem;
+    max-width: 32rem;
+    min-height: 20rem;
+    max-height: 32rem;
     width: auto;
     height: auto;
     display: flex;

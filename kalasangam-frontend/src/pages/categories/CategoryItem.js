@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 
 import ErrorModal from '../../reusable/UIElements/ErrorModal';
@@ -13,12 +13,13 @@ const CategoryItem = props => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
 
-      <Card className="custom-card">
+      <Card className="category-card">
         {isLoading && <LoadingSpinner asOverlay />}
 
-        <Card.Img variant="top" src={`http://localhost:5000/${props.image}`} />
+        {/* <Card.Img variant="top" src={`http://localhost:5000/${props.image}`} /> */}
+        <Card.Img variant="top" src={`${props.image}`} />
         <Card.Body>
-          <Card.Title>{props.title}</Card.Title>
+          <Card.Title className='name'>{props.name}</Card.Title>
         </Card.Body>
 
       </Card>

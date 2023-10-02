@@ -19,7 +19,7 @@ const CategoryList = props => {
 
   return (
     <React.Fragment>
-      <CardGroup className='custom-card-group'>
+      <CardGroup className='category-card-group'>
         {props.items.map(category => (
           <CategoryItem
             image={category.image}

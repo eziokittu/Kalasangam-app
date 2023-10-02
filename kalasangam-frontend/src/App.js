@@ -1,5 +1,5 @@
 import './App.css';
-import IMAGES from './images/images.js'
+import IMAGES from './storedData/images'
 import { 
   BrowserRouter,
   Routes, 
@@ -18,6 +18,7 @@ import UpdateProduct from './pages/myProducts/UpdateProduct';
 import CreateListing from './pages/createListing/CreateListing';
 import { AuthContext } from './reusable/context/auth-context';
 import Auth from './pages/User/Auth';
+import Admin from './pages/User/Admin';
 import { useAuth } from './reusable/hooks/auth-hook';
 
 function App() {
@@ -30,13 +31,14 @@ function App() {
         <Route exact path="/:userid/create-listing" element={<CreateListing />} />
         <Route exact path="/:userid/my-products" element={<MyProducts />} />
         <Route exact path="/products/:productId" element={<UpdateProduct />} />
-        <Route path="/" element={<Navigate to="/" />} />
+        <Route exact path="/" element={<Navigate to="/" />} />
       </Routes>
     );
   } else {
     myRoutes = (
       <Routes>
-        <Route path="/auth" element={<Auth />} />
+        <Route exact path="/admin" element={<Admin />} />
+        <Route exact path="/auth" element={<Auth />} />
       </Routes>
     );
   }

@@ -6,20 +6,17 @@
     max-width: 40rem;
   }
   
-  .custom-card-group {
-    margin-top: 4rem;
+  .category-card-group {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
     flex-wrap: wrap;
-    justify-content: flex-start;
   }
   
-  .custom-card-group .card {
-    flex: 1 1 calc(33.33% - 1rem); /* Adjust the percentage as needed */
-    margin: 0.5rem; /* Add margin between cards */
-    width: auto;
-    height: auto;
-    padding-left: auto;
-    padding-right: auto;
-    max-width: calc(50% - 1rem); /* Adjust the percentage as needed */
-    max-height: calc(30% - 1rem); /* Adjust the percentage as needed */
+  .category-card-group .card {
+    flex: 1 1 calc(30% - 1rem);
+    margin: 0.5rem;
+    max-width: calc(20% - 1rem);
+    max-height: calc(10% - 1rem);
   }
