@@ -20,6 +20,7 @@ export const useAuth = () => {
       JSON.stringify({
         userId: uid,
         token: token,
+        isAdmin: isAdmin,
         expiration: tokenExpirationDate.toISOString()
       })
     );
@@ -29,6 +30,7 @@ export const useAuth = () => {
     setToken(null);
     setTokenExpirationDate(null);
     setUserId(null);
+    setIsAdmin(false);
     localStorage.removeItem('userData');
   }, []);
 
@@ -48,7 +50,7 @@ export const useAuth = () => {
       storedData.token &&
       new Date(storedData.expiration) > new Date()
     ) {
-      login(storedData.userId, storedData.token, new Date(storedData.expiration));
+      login(storedData.userId, storedData.token, storedData.isAdmin, new Date(storedData.expiration));
     }
   }, [login]);
 

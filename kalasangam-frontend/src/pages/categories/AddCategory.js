@@ -60,27 +60,38 @@ function AddCategory() {
 
   return (
     <div className="admin-form insideBody">
-			<ErrorModal error={error} onClear={clearError} />
-      <form onSubmit={categorySubmitHandler} className='center'>
-			{isLoading && <LoadingSpinner asOverlay />}
-        <Input
-          id="name"
-          element="input"
-          type="text"
-          label="Category Name"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid Name."
-          onInput={inputHandler}
-        />
-        <ImageUpload
-          id="image"
-          onInput={inputHandler}
-          errorText="Please provide an image."
-        />
-        <Button type="submit" disabled={!formState.isValid}>
-          ADD CATEGORY
-        </Button>
-      </form>
+      {!auth.isAdmin && (
+      <div className='center'>
+        You need to be an admin to - 'create a category'
+        <br/>
+        to login as admin, go to this route '/admin'
+      </div>
+      )}
+      {auth.token && auth.isAdmin && (
+      <div>
+        <ErrorModal error={error} onClear={clearError} />
+        <form onSubmit={categorySubmitHandler} className='center'>
+          {isLoading && <LoadingSpinner asOverlay />}
+          <Input
+            id="name"
+            element="input"
+            type="text"
+            label="Category Name"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid Name."
+            onInput={inputHandler}
+          />
+          <ImageUpload
+            id="image"
+            onInput={inputHandler}
+            errorText="Please provide an image."
+          />
+          <Button type="submit" disabled={!formState.isValid}>
+            ADD CATEGORY
+          </Button>
+        </form>
+      </div>
+      )}
     </div>
   );
 }

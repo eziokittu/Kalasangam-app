@@ -27,7 +27,7 @@ const Admin = () => {
 					'Content-Type': 'application/json'
 				}
 			);
-			auth.login(responseData.userId, responseData.token, responseData.isAdmin);
+			auth.login(responseData.userId, responseData.token, true);
 		} catch (err) {
 			console.log('ERROR logging in as ADMIN!');
 		}
@@ -35,6 +35,19 @@ const Admin = () => {
 
   return (
     <div className="admin-form insideBody">
+      {auth.isLoggedIn && !auth.isAdmin && (
+        <div className='center'>
+          You need to logout and re-login as an ADMIN
+          <br />
+          from this route - '/admin'.
+        </div>
+      )}
+      {auth.isLoggedIn && auth.isAdmin && (
+        <div className='center'>
+          You are logged in as an admin
+        </div>
+      )}
+      {!auth.isLoggedIn && (
       <form onSubmit={adminSubmitHandler} className='center'>
         <label>Are you an admin?</label>
         <input
@@ -56,6 +69,7 @@ const Admin = () => {
         </button>
 				{/* {isSecretCorrect && (<><br/><p>You are an admin!</p></>)} */}
       </form>
+      )}
       
     </div>
   );

@@ -25,29 +25,15 @@ import { useAuth } from './reusable/hooks/auth-hook';
 function App() {
   const { token, login, logout, userId, isAdmin } = useAuth();
 
-  console.log("is admin? - "+isAdmin);
 
   let myRoutes;
-  if (token && isAdmin){
-    myRoutes = (
-      <Routes>
-        <Route exact path="/admin/create-category" element={<AddCategory />} />
-      </Routes>
-    );
-  } else if (token) {
+  if (token) {
     myRoutes = (
       <Routes>
         <Route exact path="/:userid/create-listing" element={<CreateListing />} />
         <Route exact path="/:userid/my-products" element={<MyProducts />} />
         <Route exact path="/products/:productId" element={<UpdateProduct />} />
         <Route exact path="/" element={<Navigate to="/" />} />
-      </Routes>
-    );
-  } else {
-    myRoutes = (
-      <Routes>
-        <Route exact path="/admin" element={<Admin />} />
-        <Route exact path="/auth" element={<Auth />} />
       </Routes>
     );
   }
@@ -71,6 +57,9 @@ function App() {
           <Route exact path='/' element={<Main homeImage={IMAGES.image_home}/>} />
           <Route exact path='/categories' element={<Categories />} />
           <Route exact path='/products' element={<Products />} />
+          <Route exact path="/admin" element={<Admin />} />
+          <Route exact path="/admin/create-category" element={<AddCategory />} />
+          <Route exact path="/auth" element={<Auth />} />
         </Routes>
         
         <main>{myRoutes}</main>
