@@ -6,7 +6,7 @@ import {
   Navigate,
   Route,
 } from 'react-router-dom';
-import React, { useContext, useState } from 'react';
+import React from 'react';
 
 import MainNavigation from './reusable/Navigation/MainNavigation';
 import Footer from './shared/footer/Footer';
@@ -23,14 +23,14 @@ import Admin from './pages/User/Admin';
 import { useAuth } from './reusable/hooks/auth-hook';
 
 function App() {
-  const { token, login, logout, userId } = useAuth();
-  const auth = useContext(AuthContext);
+  const { token, login, logout, userId, isAdmin } = useAuth();
+
+  console.log("is admin? - "+isAdmin);
 
   let myRoutes;
-  if (token && auth.isAdmin){
+  if (token && isAdmin){
     myRoutes = (
       <Routes>
-        <Route exact path="/products/:productId" element={<UpdateProduct />} />
         <Route exact path="/admin/create-category" element={<AddCategory />} />
       </Routes>
     );
@@ -58,7 +58,7 @@ function App() {
         isLoggedIn: !!token,
         token: token,
         userId: userId,
-        isAdmin: false,
+        isAdmin: isAdmin,
         login: login,
         logout: logout
       }}

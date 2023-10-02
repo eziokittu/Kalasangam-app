@@ -65,7 +65,8 @@ const signup = async (req, res, next) => {
     email,
     image: req.file.path,
     password: hashedPassword,
-    products: []
+    products: [],
+    isAdmin: false
   });
 
   try {

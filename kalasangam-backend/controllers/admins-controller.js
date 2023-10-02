@@ -8,7 +8,7 @@ const Admin = require('../models/admin');
 
 const adminLogin = async (req, res, next) => {
 	const { name, password } = req.body;
-	// console.log("DEBUG -- admins-controller.js -- 1 -- name: "+name+", password: "+password);
+
 	let existingAdmin;
 	try {
 		existingAdmin = await Admin.findOne({ name: name });
@@ -71,7 +71,8 @@ const adminLogin = async (req, res, next) => {
 		userId: existingAdmin.id,
 		name: existingAdmin.name,
 		password: existingAdmin.password,
-		token: token
+		token: token,
+		isAdmin: true
 	});
 };
   

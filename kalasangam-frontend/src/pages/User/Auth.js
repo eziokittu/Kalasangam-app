@@ -74,7 +74,7 @@ const Auth = () => {
             'Content-Type': 'application/json'
           }
         );
-        auth.login(responseData.userId, responseData.token);
+        auth.login(responseData.userId, responseData.token, false);
       } catch (err) {
         console.log('ERROR logging in!');
       }
@@ -99,7 +99,7 @@ const Auth = () => {
           formData
         );
 
-        auth.login(responseData.userId, responseData.token);
+        auth.login(responseData.userId, responseData.token, responseData.isAdmin);
         // auth.login(responseData.user.id);
       } catch (err) {
         console.log('ERROR signing in!');

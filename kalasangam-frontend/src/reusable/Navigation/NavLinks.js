@@ -19,18 +19,26 @@ const NavLinks = props => {
         <NavLink to="/products" exact>Products</NavLink>
       </li>
 
-      {auth.isLoggedIn && (
+      {auth.isLoggedIn && auth.isAdmin && (
+        <li>
+          {/* <NavLink to={`/create-listing`}>{props.names[3]}</NavLink> */}
+          <NavLink to={`/admin/create-category`}>Create Category</NavLink>
+        </li>
+      )}
+
+      {auth.isLoggedIn && !auth.isAdmin && (
         <li>
           {/* <NavLink to={`/create-listing`}>{props.names[3]}</NavLink> */}
           <NavLink to={`/${auth.userId}/my-products`}>My Products</NavLink>
         </li>
       )}
-      {auth.isLoggedIn && (
+      {auth.isLoggedIn && !auth.isAdmin && (
         <li>
           {/* <NavLink to={`/create-listing`}>{props.names[3]}</NavLink> */}
           <NavLink to={`/${auth.userId}/create-listing`}>Create Listing</NavLink>
         </li>
       )}
+
       {auth.isLoggedIn && (
         <li>
           <button onClick={auth.logout}>LOGOUT</button>
