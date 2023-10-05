@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import '../../reusable/reusable.css';
 import './Admin.css';
@@ -33,6 +34,11 @@ const Admin = () => {
 		}
   };
 
+  const navigate = useNavigate();
+  const clickIsUserHandler = () => {
+    navigate('/auth');
+  }
+
   return (
     <div className="admin-form insideBody">
       {auth.isLoggedIn && !auth.isAdmin && (
@@ -49,6 +55,16 @@ const Admin = () => {
       )}
       {!auth.isLoggedIn && (
       <form onSubmit={adminSubmitHandler} className='center'>
+        <div>
+          Not an admin? 
+          <br />
+          <button
+            onClick={clickIsUserHandler}
+          >
+            Login as an user
+          </button>
+        </div>
+        
         <label>Are you an admin?</label>
         <input
           type="text"

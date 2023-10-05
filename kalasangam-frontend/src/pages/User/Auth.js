@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ImageUpload from '../../reusable/FormElements/ImageUpload';
 import Card from '../../reusable/UIElements/Card';
 import Input from '../../reusable/FormElements/Input';
@@ -108,15 +109,33 @@ const Auth = () => {
     }
   };
 
+  const navigate = useNavigate();
+  const clickIsAdminHandler = () => {
+    navigate('/admin');
+  }
+
   return (
     <React.Fragment>
-      {auth.isLoggedIn && (
+      {auth.isLoggedIn && auth.isAdmin &&(
         <div className='center insideBody'>
-          You are logged in as an user!
+          You are logged in as an Admin!
+          <br />
+          To login as an user, you need to logout!
+        </div>
+      )}
+      {auth.isLoggedIn && !auth.isAdmin &&(
+        <div className='center insideBody'>
+          You are logged in as an User!
         </div>
       )}
       {!auth.isLoggedIn && (
       <div>
+        <button
+          className='center insideBody'
+          onClick={clickIsAdminHandler}
+        >
+          Login as Admin
+        </button>
         <ErrorModal error={error} onClear={clearError} />
         <Card className="authentication">
           {isLoading && <LoadingSpinner asOverlay />}
