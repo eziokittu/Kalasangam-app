@@ -138,66 +138,70 @@ const createCategory = async (req, res, next) => {
 // 	res.status(200).json({ category: category.toObject({ getters: true }) });
 // };
 
-// const deleteCategory = async (req, res, next) => {
-// 	const categoryId = req.params.pid;
+const deleteCategory = async (req, res, next) => {
+	const categoryId = req.params.cid;
+  // console.log('DEBUG -- categories-controller.js -- 1: cid='+categoryId);
+	let category;
+  try {
+    // console.log('DEBUG -- categories-controller.js -- 1.1');
+    category = await Category.findById(categoryId);
+    // console.log('DEBUG -- categories-controller.js -- 1.2');
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong[3], could not find category to delete. [1]',
+      500
+    );
+    return next(error);
+  }
+  // console.log('DEBUG -- categories-controller.js -- 3');
 
-// 	let category;
-//   try {
-//     category = await category.findById(categoryId).populate('creator');;
-//   } catch (err) {
-//     const error = new HttpError(
-//       'Something went wrong[3], could not find category to delete. [1]',
-//       500
-//     );
-//     return next(error);
-//   }
+  if (!category) {
+    const error = new HttpError('Could not find category for this id.', 404);
+    return next(error);
+  }
 
-//   if (!category) {
-//     const error = new HttpError('Could not find category for this id.', 404);
-//     return next(error);
-//   }
+  // if (category.creator.id !== req.userData.userId) {
+  //   const error = new HttpError(
+  //     'You are not allowed to delete this category.',
+  //     401
+  //   );
+  //   return next(error);
+  // }
 
-//   if (category.creator.id !== req.userData.userId) {
-//     const error = new HttpError(
-//       'You are not allowed to delete this category.',
-//       401
-//     );
-//     return next(error);
-//   }
+  const imagePath = category.image;
 
-//   const imagePath = category.image;
+  try {
+    // const sess = await mongoose.startSession();
+    // sess.startTransaction();
+    // await category.remove({ session: sess });
+    // category.creator.categorys.pull(category);
+    // await category.creator.save({ session: sess });
+    // await sess.commitTransaction();
 
-//   try {
-//     // const sess = await mongoose.startSession();
-//     // sess.startTransaction();
-//     // await category.remove({ session: sess });
-//     // category.creator.categorys.pull(category);
-//     // await category.creator.save({ session: sess });
-//     // await sess.commitTransaction();
+    await category.remove();
+    // category.creator.categorys.pull(category);
+    // await category.creator.save();
+  } 
+  catch (err) {
+    const error = new HttpError(
+      'Something went wrong[4], could not delete category.',
+      500
+    );
+    return next(error);
+  }
 
-//     await category.remove();
-//     category.creator.categorys.pull(category);
-//     await category.creator.save();
-//   } 
-//   catch (err) {
-//     const error = new HttpError(
-//       'Something went wrong[4], could not delete category.',
-//       500
-//     );
-//     return next(error);
-//   }
+  fs.unlink(imagePath, err => {
+    console.log(err);
+  });
 
-//   fs.unlink(imagePath, err => {
-//     console.log(err);
-//   });
-
-//   res.status(200).json({ message: 'Deleted category.' });
-// };
+  res.status(200).json({ message: 'Deleted category.' });
+  // console.log('DEBUG -- categories-controller.js -- 5: Deleted Category');
+};
 
 module.exports = {
   getCategories,
   getCategoryNames,
-  createCategory
+  createCategory,
 	// updateCategory,
-	// deleteCategory
+	deleteCategory
 };

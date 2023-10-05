@@ -36,7 +36,7 @@ router.post(
 //   productsController.updateProduct
 // );
 
-// // DELETE requests
-// router.delete('/:pid', productsController.deleteProduct);
+// DELETE requests
+router.delete('/:cid', categoriesController.deleteCategory);
 
 module.exports = router;
