@@ -79,9 +79,9 @@ const CategoryItem = props => {
 
         {auth.isLoggedIn && auth.isAdmin && (
           <div className="card-links">
-            {/* <Link to={`/admin/update-category/${props.id}`}>
+            <Link to={`/admin/update-category/${props.id}`}>
               <Button>EDIT</Button>
-            </Link> */}
+            </Link>
             <Link>
               <Button onClick={showDeleteWarningHandler}>DELETE</Button>
             </Link>

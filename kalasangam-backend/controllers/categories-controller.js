@@ -3,6 +3,30 @@ const fs = require('fs');
 const HttpError = require('../models/http-error');
 const Category = require('../models/categories');
 
+const getCategoriesById= async (req, res, next) => {
+  const categoryId = req.params.cid;
+
+  let category;
+  try {
+    category = await Category.findById(categoryId);
+  } catch (err) {
+    const error = new HttpError(
+      'Fetching categories failed, please try again later.',
+      500
+    );
+    return next(error);
+  }
+
+  if (!category) {
+    return next(new HttpError('No category found.', 404));
+  }
+
+  res.json({
+    category: category.toObject({ getters: true }),
+  });
+  console.log("DEBUG -- categories-Controller.js - Fetching a category by Id successful!");
+};
+
 const getCategories= async (req, res, next) => {
   let allcategories;
   try {
@@ -62,27 +86,27 @@ const getCategoryNames= async (req, res, next) => {
 };
 
 const createCategory = async (req, res, next) => {
-  console.log("DEBUG -- categories-controller.js -- 0");
+  // console.log("DEBUG -- categories-controller.js -- 0");
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.log("DEBUG -- categories-controller.js -- 0.1: ");
+    // console.log("DEBUG -- categories-controller.js -- 0.1: ");
     return next(
       new HttpError('Invalid inputs passed, please check your data!', 422)
     );
   }
   const { name } = req.body;
 
-  console.log("DEBUG -- categories-controller.js -- 1");
+  // console.log("DEBUG -- categories-controller.js -- 1");
 
   const createdcategory = new Category({
     name,
     image: req.file.path
   });
-  console.log("DEBUG -- categories-controller.js -- 2");
+  // console.log("DEBUG -- categories-controller.js -- 2");
   try {
     await createdcategory.save(); // Save the new category instance
-    console.log("DEBUG -- categories-controller.js -- 2.1: Saved category in database");
+    // console.log("DEBUG -- categories-controller.js -- 2.1: Saved category in database");
   } catch (err) {
     // console.log(err);
     const error = new HttpError(
@@ -93,50 +117,51 @@ const createCategory = async (req, res, next) => {
   }
 
   res.status(201).json({ category: createdcategory });
-  console.log("DEBUG -- categories-controller.js -- 7: everything works fine");
+  console.log("DEBUG -- categories-controller.js -- 7: Category Successfully created!");
 };
 
-// const updateCategory = async (req, res, next) => {
-// 	const errors = validationResult(req);
-//   if (!errors.isEmpty()) {
-//     return next(
-//       new HttpError('Invalid inputs passed, please check your data.', 422)
-//     );
-//   }
+const updateCategory = async (req, res, next) => {
+	const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(
+      new HttpError('Invalid inputs passed, please check your data.', 422)
+    );
+  }
 
-// 	const { title, description } = req.body;
-// 	const categoryId = req.params.pid;
+	const { name } = req.body;
+	const categoryId = req.params.cid;
 
-// 	let category;
-//   try {
-//     category = await category.findById(categoryId);
-//   } catch (err) {
-//     const error = new HttpError(
-//       'Something went wrong[1], could not update category.',
-//       500
-//     );
-//     return next(error);
-//   }
+	let category;
+  try {
+    category = await Category.findById(categoryId);
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong[1], could not update category.',
+      500
+    );
+    return next(error);
+  }
 
-//   if (category.creator.toString() !== req.userData.userId) {
-//     const error = new HttpError('You are not allowed to edit this place.', 401);
-//     return next(error);
-//   }
+  // if (category.creator.toString() !== req.userData.userId) {
+  //   const error = new HttpError('You are not allowed to edit this place.', 401);
+  //   return next(error);
+  // }
 
-// 	category.title = title;
-// 	category.description = description;
+	category.name = name;
+	// category.image = req.file.path;
 
-// 	try {
-//     await category.save();
-//   } catch (err) {
-//     const error = new HttpError(
-//       'Something went wrong[2], could not update category.', 500
-//     );
-//     return next(error);
-//   }
+	try {
+    await category.save();
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong[2], could not update category.', 500
+    );
+    return next(error);
+  }
 	
-// 	res.status(200).json({ category: category.toObject({ getters: true }) });
-// };
+	res.status(200).json({ category: category.toObject({ getters: true }) });
+  console.log("DEBUG -- categories-controller.js -- 7: Category updated!");
+};
 
 const deleteCategory = async (req, res, next) => {
 	const categoryId = req.params.cid;
@@ -200,8 +225,9 @@ const deleteCategory = async (req, res, next) => {
 
 module.exports = {
   getCategories,
+  getCategoriesById,
   getCategoryNames,
   createCategory,
-	// updateCategory,
+	updateCategory,
 	deleteCategory
 };

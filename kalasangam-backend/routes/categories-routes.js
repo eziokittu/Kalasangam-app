@@ -7,6 +7,7 @@ const checkAuth = require('../middlewares/check-auth');
 const router = express.Router();
 
 // GET requests
+router.get('/get-categories/:cid', categoriesController.getCategoriesById)
 router.get('/get-categories', categoriesController.getCategories)
 router.get('/get-names', categoriesController.getCategoryNames)
 
@@ -24,17 +25,18 @@ router.post(
 	categoriesController.createCategory
 );
 
-// // UPDATE requests
-// router.patch(
-//   '/:pid',
-//   [
-//     check('title')
-//       .not()
-//       .isEmpty(),
-//     check('description').isLength({ min: 5 })
-//   ],
-//   productsController.updateProduct
-// );
+// UPDATE requests
+router.patch(
+  '/:cid',
+//   fileUpload.single('image'),
+  [
+    check('name')
+      .not()
+      .isEmpty()
+	  .isLength({ min: 3 })
+  ],
+  categoriesController.updateCategory
+);
 
 // DELETE requests
 router.delete('/:cid', categoriesController.deleteCategory);
