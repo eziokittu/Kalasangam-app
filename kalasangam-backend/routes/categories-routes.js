@@ -7,7 +7,8 @@ const checkAuth = require('../middlewares/check-auth');
 const router = express.Router();
 
 // GET requests
-router.get('/', categoriesController.getCategories)
+router.get('/get-categories', categoriesController.getCategories)
+router.get('/get-names', categoriesController.getCategoryNames)
 
 router.use(checkAuth);
 

@@ -81,7 +81,7 @@ const getProductsByUserId = async (req, res, next) => {
       product.toObject({ getters: true })
     )
   });
-  console.log("DEBUG -- Products-Controller - Fetching all the USER's products successful!");
+  // console.log("DEBUG -- Products-Controller - Fetching all the USER's products successful!");
 };
 
 const createProduct = async (req, res, next) => {
@@ -91,15 +91,16 @@ const createProduct = async (req, res, next) => {
 		  new HttpError('Invalid inputs passed, please check your data!', 422)
     );
   }
-	const { title, description } = req.body;
+	const { title, description, category } = req.body;
 
   // Ensure that req.userData.userId contains a valid ObjectId of an existing user
-  console.log('User ID:', req.userData.userId);
+  // console.log('DEBUG ---- 1: User ID:', req.userData.userId);
 
 	const createdProduct = new Product ({
 		title,
 		description,
     image: req.file.path,
+    category,
 		creator: req.userData.userId
 	});
   // console.log("DEBUG ---- 2");

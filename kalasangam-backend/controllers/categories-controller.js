@@ -25,6 +25,42 @@ const getCategories= async (req, res, next) => {
   // console.log("DEBUG -- categories-Controller - Fetching all the categories successful!");
 };
 
+const getCategoryNames= async (req, res, next) => {
+  let allcategories;
+  try {
+    // to get only the name attribute
+    allcategories = await Category.find({}, 'name').exec();
+  } catch (err) {
+    const error = new HttpError(
+      'Fetching category names failed, please try again later.',
+      500
+    );
+    return next(error);
+  }
+
+  if (!allcategories || allcategories.length === 0) {
+    return next(new HttpError('No categories found.', 404));
+  }
+
+  // iterating the array of objects of categories, and extracting only the individual names
+  let allNames = []
+  for (let i = 0; i < allcategories.length; i++) {
+    allNames.push(allcategories[i].name);
+  }
+
+  if (allNames.length === 0){
+    allNames.push('all');
+  }
+
+  // console.log("no of categories: "+allNames.length);
+
+  res.json({
+    // categoryNames: allNames.map((categoryNames) => toString(categoryNames)),
+    categoryNames: allNames
+  });
+  // console.log("DEBUG -- categories-Controller - Fetching all the categories successful!");
+};
+
 const createCategory = async (req, res, next) => {
   console.log("DEBUG -- categories-controller.js -- 0");
 
@@ -160,6 +196,7 @@ const createCategory = async (req, res, next) => {
 
 module.exports = {
   getCategories,
+  getCategoryNames,
   createCategory
 	// updateCategory,
 	// deleteCategory

@@ -17,7 +17,7 @@ function Categories() {
     const fetchCategories = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/categories/`
+          `http://localhost:5000/api/categories/get-categories`
         );
         setLoadedCategories(responseData.categories);
       } catch (err) {
