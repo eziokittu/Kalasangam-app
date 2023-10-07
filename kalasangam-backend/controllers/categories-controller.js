@@ -30,7 +30,9 @@ const getCategoriesById= async (req, res, next) => {
 const getCategories= async (req, res, next) => {
   let allcategories;
   try {
-    allcategories = await Category.find();
+    // allcategories = await Category.find();
+    // this finds all the categories except this specific object id (for the default np specific category)
+    allcategories = await Category.find( {_id:{$ne:"651e53ef442d9fced87c61e3"} })
   } catch (err) {
     const error = new HttpError(
       'Fetching categories failed, please try again later.',

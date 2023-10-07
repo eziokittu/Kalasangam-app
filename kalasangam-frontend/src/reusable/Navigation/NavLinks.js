@@ -3,11 +3,25 @@ import { NavLink } from 'react-router-dom';
 
 import { AuthContext } from '../../reusable/context/auth-context';
 import './NavLinks.css';
+import 'remixicon/fonts/remixicon.css'
 
 const NavLinks = props => {
   const auth = useContext(AuthContext);
 
   return (
+    // <ul className='flex justify-end'>
+    //   <li><ul>
+    //     <li><NavLink to="/" className="nav__logo"><i className="ri-leaf-fill"></i>{props.appname}</NavLink></li>
+    //     <li>KalaSangam</li>
+    //   </ul></li>
+    //   <li><ul>
+    //     <li>Categories</li>
+    //     <li>Products</li>
+    //   </ul></li>
+    //   <li><ul>
+    //     <li>Login</li>
+    //   </ul></li>
+    // </ul>
     <ul className="nav-links">
       <li>
         <NavLink to="/" exact>Home</NavLink>
