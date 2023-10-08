@@ -86,12 +86,12 @@ const getProductsByUserId = async (req, res, next) => {
 
 const getProductsByCategoryId = async (req, res, next) => {
   const categoryName = req.params.name;
-  console.log("DEBUG -- products-controller -- working 1: categoryName = "+categoryName);
+  // console.log("DEBUG -- products-controller -- working 1: categoryName = "+categoryName);
   // let products;
   let productsForCategories;
   try {
     productsForCategories = await Product.find({category: categoryName});
-    console.log("DEBUG -- products-controller -- working 2");
+    // console.log("DEBUG -- products-controller -- working 2");
   } catch (err) {
     const error = new HttpError(
       'Fetching products failed, please try again later',
@@ -100,14 +100,14 @@ const getProductsByCategoryId = async (req, res, next) => {
     return next(error);
   }
 
-  console.log("DEBUG -- products-controller -- working 3");
+  // console.log("DEBUG -- products-controller -- working 3");
   if (!productsForCategories || productsForCategories.length === 0) {
     return next(
       new HttpError('Could not find products for the provided category id.', 404)
     );
   }
 
-  console.log("DEBUG -- products-controller -- working 4");
+  // console.log("DEBUG -- products-controller -- working 4");
   res.json({
     products: productsForCategories
   });
@@ -121,7 +121,7 @@ const createProduct = async (req, res, next) => {
 		  new HttpError('Invalid inputs passed, please check your data!', 422)
     );
   }
-	const { title, description, category } = req.body;
+	const { title, description, category, facebook, instagram, website, twitter } = req.body;
 
   // Ensure that req.userData.userId contains a valid ObjectId of an existing user
   // console.log('DEBUG ---- 1: User ID:', req.userData.userId);
@@ -131,7 +131,13 @@ const createProduct = async (req, res, next) => {
 		description,
     image: req.file.path,
     category,
-		creator: req.userData.userId
+		creator: req.userData.userId,
+
+    // socialMediaLinks.website: website,
+    website: website,
+    facebook,
+    instagram,
+    twitter,
 	});
   // console.log("DEBUG ---- 2");
   // check if the user id provided exists or not

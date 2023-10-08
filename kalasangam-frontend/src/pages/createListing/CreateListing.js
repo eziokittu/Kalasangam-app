@@ -52,7 +52,24 @@ function CreateListing() {
     },
     false
   );
-    
+
+  const [socialMediaFormState, socialMediaInputHandler] = useForm(
+    {
+      facebook: {
+        value: 'https://www.facebook.com/'
+      },
+      instagram: {
+        value: 'https://www.instagram.com/'
+      },
+      twitter: {
+        value: 'https://twitter.com/'
+      },
+      website: {
+        value: 'https://www.google.com/'
+      }
+    },
+    false
+  );   
   const navigate = useNavigate();
 
   const productSubmitHandler = async event => {
@@ -63,7 +80,11 @@ function CreateListing() {
       formData.append('description', formState.inputs.description.value);
       formData.append('category', category);
       formData.append('image', formState.inputs.image.value);
-      // formData.append('facebook', socialMediaFormState.inputs.image.value);
+      
+      formData.append('facebook', socialMediaFormState.inputs.facebook.value);
+      formData.append('website', socialMediaFormState.inputs.website.value);
+      formData.append('instagram', socialMediaFormState.inputs.instagram.value);
+      formData.append('twitter', socialMediaFormState.inputs.twitter.value);
       // console.log("DEBUG --- CreateListing --- 1: ");
       await sendRequest('http://localhost:5000/api/products', 'POST', formData, {
         Authorization: 'Bearer ' + auth.token
@@ -93,28 +114,6 @@ function CreateListing() {
     };
     fetchCategoryNames();
   }, [sendRequest]);
-
-  const [socialMediaFormState, socialMediaInputHandler] = useForm(
-    {
-      facebook: {
-        value: '',
-        isValid: false
-      },
-      instagram: {
-        value: '',
-        isValid: false
-      },
-      twitter: {
-        value: '',
-        isValid: false
-      },
-      website: {
-        value: '',
-        isValid: false
-      }
-    },
-    false
-  );
 
   return (
     <React.Fragment>
