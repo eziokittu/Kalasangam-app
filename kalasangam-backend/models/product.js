@@ -6,7 +6,15 @@ const productSchema = new Schema({
     description: {type: String, required: true },
     image: {type: String, required: true },
     category: {type: String, required: true },
-    creator: {type: mongoose.Types.ObjectId, required: true, ref: 'User'}
+    creator: {type: mongoose.Types.ObjectId, required: true, ref: 'User'},
+    
+    createdAt: {type: Date, default: Date.now()},
+    socialMediaLinks: {
+        website: {type: String, default: 'https://www.google.com/' },
+        facebook: {type: String, default: 'https://www.facebook.com/' },
+        instagram: {type: String, default: 'https://www.instagram.com/' },
+        twitter: {type: String, default: 'https://twitter.com/' }
+    }
 });
 
 module.exports = mongoose.model('Product', productSchema);

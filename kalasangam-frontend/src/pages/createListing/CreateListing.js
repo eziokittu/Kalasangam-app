@@ -33,7 +33,7 @@ function CreateListing() {
     });
     setCategoryTitle("Selected Category: "+c, (prevValue, c) => {
     });
-};
+  };
 
   const [formState, inputHandler] = useForm(
     {
@@ -63,6 +63,7 @@ function CreateListing() {
       formData.append('description', formState.inputs.description.value);
       formData.append('category', category);
       formData.append('image', formState.inputs.image.value);
+      // formData.append('facebook', socialMediaFormState.inputs.image.value);
       // console.log("DEBUG --- CreateListing --- 1: ");
       await sendRequest('http://localhost:5000/api/products', 'POST', formData, {
         Authorization: 'Bearer ' + auth.token
@@ -93,6 +94,28 @@ function CreateListing() {
     fetchCategoryNames();
   }, [sendRequest]);
 
+  const [socialMediaFormState, socialMediaInputHandler] = useForm(
+    {
+      facebook: {
+        value: '',
+        isValid: false
+      },
+      instagram: {
+        value: '',
+        isValid: false
+      },
+      twitter: {
+        value: '',
+        isValid: false
+      },
+      website: {
+        value: '',
+        isValid: false
+      }
+    },
+    false
+  );
+
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
@@ -103,10 +126,8 @@ function CreateListing() {
         <div>
           <DropDown 
             onSubmit={getCategory}
-            // onSubmit={inputHandler}
             items={loadedCategoryNames}
             title={categoryTitle}
-            // onInput={inputHandler}
           />
         </div>
 
@@ -142,12 +163,55 @@ function CreateListing() {
             errorText="Please provide an image."
           />
         </div>
+        <br/><br/>
+        {/* getting social media links (optional) */}
+        <div className='justify-center'>
+        <br/><label className='text-xl font-medium text-gray-900 dark:text-white'>Social Media Links:</label><br/>
+          <br/><label for="small-input" class="text-xs block mb-2 font-normal text-gray-900 dark:text-pink-200">FaceBook</label>
+          <input type="text" id="small-input" class="w-[60%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter facebook link' onSubmit={socialMediaInputHandler}></input>
+          <br/><br/><label for="small-input" class="text-xs block mb-2 font-normal text-gray-900 dark:text-pink-200">Instagram</label>
+          <input type="text" id="small-input" class="w-[60%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Instagram link' onSubmit={socialMediaInputHandler}></input>
+          <br/><br/><label for="small-input" class="text-xs block mb-2 font-normal text-gray-900 dark:text-pink-200">Twitter</label>
+          <input type="text" id="small-input" class="w-[60%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Twitter link' onSubmit={socialMediaInputHandler}></input>
+          <br/><br/><label for="small-input" class="text-xs block mb-2 font-normal text-gray-900 dark:text-pink-200">Website</label>
+          <input type="text" id="small-input" class="w-[60%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Website link' onSubmit={socialMediaInputHandler}></input>
+          {/* <label className=''>Facebook</label>
+          <input
+            className=''
+            id="description"
+            type='text'
+            onSubmit={()=>{}}
+          />
+          <label className=''>Instagram</label>
+          <input
+            className=''
+            id="description"
+            type='text'
+            onSubmit={()=>{}}
+          />
+          <label className=''>Twitter</label>
+          <input
+            className=''
+            id="description"
+            type='text'
+            onSubmit={()=>{}}
+          />
+          <label className=''>Website</label>
+          <input
+            className=''
+            id="description"
+            type='text'
+            onSubmit={()=>{}}
+          /> */}
+        </div>
 
+        {/* Submit button for adding product */}
         <div className='button-submit'>
           <Button type="submit" disabled={!formState.isValid}>
             ADD PRODUCT
           </Button>
         </div>
+
       </form>
     </React.Fragment>
   );
