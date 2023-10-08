@@ -23,7 +23,7 @@ function CreateListing() {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-  const [category, setCategory] = useStateWithCallback('');
+  const [category, setCategory] = useStateWithCallback('Choose a product category');
   const [categoryTitle, setCategoryTitle] = useStateWithCallback('Choose a product category');
 
   // this method to be passed as a prop to the dropdown component, to get the selected option
@@ -119,7 +119,7 @@ function CreateListing() {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <form className="product-form " onSubmit={productSubmitHandler}>
+      <form className="product-form center" onSubmit={productSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay />}
         <div className='title'>Create a Product Listing</div>
 
@@ -133,6 +133,7 @@ function CreateListing() {
 
         <br />
 
+        {/* product title text input field */}
         <div className='input-text'>
           <Input
             id="title"
@@ -145,6 +146,7 @@ function CreateListing() {
           />
         </div>
 
+        {/* description text area input field */}
         <div className='input-text'>
           <Input
             id="description"
@@ -156,7 +158,8 @@ function CreateListing() {
           />
         </div>
         
-        <div className='input-file'>
+
+        <div className='input-file justify-center'>
           <ImageUpload
             id="image"
             onInput={inputHandler}
@@ -165,16 +168,16 @@ function CreateListing() {
         </div>
         <br/><br/>
         {/* getting social media links (optional) */}
-        <div className='justify-center'>
+        <div className='c'>
         <br/><label className='text-xl font-medium text-gray-900 dark:text-white'>Social Media Links:</label><br/>
           <br/><label for="small-input" class="text-xs block mb-2 font-normal text-gray-900 dark:text-pink-200">FaceBook</label>
-          <input type="text" id="small-input" class="w-[60%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter facebook link' onSubmit={socialMediaInputHandler}></input>
+          <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter facebook link' onSubmit={socialMediaInputHandler}></input>
           <br/><br/><label for="small-input" class="text-xs block mb-2 font-normal text-gray-900 dark:text-pink-200">Instagram</label>
-          <input type="text" id="small-input" class="w-[60%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Instagram link' onSubmit={socialMediaInputHandler}></input>
+          <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Instagram link' onSubmit={socialMediaInputHandler}></input>
           <br/><br/><label for="small-input" class="text-xs block mb-2 font-normal text-gray-900 dark:text-pink-200">Twitter</label>
-          <input type="text" id="small-input" class="w-[60%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Twitter link' onSubmit={socialMediaInputHandler}></input>
+          <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Twitter link' onSubmit={socialMediaInputHandler}></input>
           <br/><br/><label for="small-input" class="text-xs block mb-2 font-normal text-gray-900 dark:text-pink-200">Website</label>
-          <input type="text" id="small-input" class="w-[60%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Website link' onSubmit={socialMediaInputHandler}></input>
+          <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Website link' onSubmit={socialMediaInputHandler}></input>
           {/* <label className=''>Facebook</label>
           <input
             className=''
