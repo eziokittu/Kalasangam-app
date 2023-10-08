@@ -53,10 +53,10 @@ function CreateListing() {
     false
   );
 
-  const [linkFb, setLinkFb] = useState('');
-  const [linkIg, setLinkIg] = useState('');
-  const [linkTw, setLinkTw] = useState('');
-  const [linkWb, setLinkWb] = useState('');
+  const [linkFb, setLinkFb] = useState('https://www.facebook.com/');
+  const [linkIg, setLinkIg] = useState('https://www.instagram.com/');
+  const [linkTw, setLinkTw] = useState('https://twitter.com/');
+  const [linkWb, setLinkWb] = useState('https://www.google.com/');
   const getSocialLinkFb = (event) => {
     setLinkFb(event.target.value);
     console.log('The link found is - '+event.target.value);
@@ -85,10 +85,6 @@ function CreateListing() {
       formData.append('category', category);
       formData.append('image', formState.inputs.image.value);
       
-      // if (linkFb===''){setLinkFb('https://www.facebook.com/');}
-      // if (linkTw===''){setLinkTw('https://twitter.com/');}
-      // if (linkWb===''){setLinkWb('https://www.google.com/');}
-      // if (linkIg===''){setLinkIg('https://www.instagram.com/');}
       formData.append('facebook', linkFb);
       formData.append('website', linkWb);
       formData.append('instagram', linkIg);
