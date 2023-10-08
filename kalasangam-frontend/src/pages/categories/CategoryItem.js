@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
@@ -14,6 +14,7 @@ const CategoryItem = props => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const auth = useContext(AuthContext);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const navigate = useNavigate();
 
   const showDeleteWarningHandler = () => {
     setShowConfirmModal(true);
@@ -41,6 +42,27 @@ const CategoryItem = props => {
       console.log("Could not delete category: "+err);
     }
   };
+
+  const showProductsHandler = async () => {
+    let selectedCategory;
+
+    // getting the category name for the selected category
+    try {
+      console.log("test 1: props.id="+props.id);
+      selectedCategory = await sendRequest(
+        `http://localhost:5000/api/categories/get-categories/${props.id}`,
+        'GET',
+        null,
+        {}
+      );
+      console.log("test 2: "+selectedCategory.category.name);
+      // props.onDelete(props.id);
+    } catch (err) {
+      console.log("Could not delete category: "+err);
+    }
+
+    navigate(`${selectedCategory.category.name}`);
+  }
 
   return (
     <React.Fragment>
@@ -77,16 +99,21 @@ const CategoryItem = props => {
           <Card.Title className='name'>{props.name}</Card.Title>
         </Card.Body>
 
-        {auth.isLoggedIn && auth.isAdmin && (
-          <div className="card-links">
+        <div className="card-links">
+          {auth.isLoggedIn && auth.isAdmin && (
             <Link to={`/admin/update-category/${props.id}`}>
               <Button>EDIT</Button>
             </Link>
+          )}
+          {auth.isLoggedIn && auth.isAdmin && (
             <Link>
               <Button onClick={showDeleteWarningHandler}>DELETE</Button>
             </Link>
-          </div>
-        )}
+          )}
+          <Link>
+            <Button onClick={showProductsHandler}>Show Products</Button>
+          </Link>
+        </div>
 
       </Card>
     </React.Fragment>

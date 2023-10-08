@@ -84,6 +84,36 @@ const getProductsByUserId = async (req, res, next) => {
   // console.log("DEBUG -- Products-Controller - Fetching all the USER's products successful!");
 };
 
+const getProductsByCategoryId = async (req, res, next) => {
+  const categoryName = req.params.name;
+  console.log("DEBUG -- products-controller -- working 1: categoryName = "+categoryName);
+  // let products;
+  let productsForCategories;
+  try {
+    productsForCategories = await Product.find({category: categoryName});
+    console.log("DEBUG -- products-controller -- working 2");
+  } catch (err) {
+    const error = new HttpError(
+      'Fetching products failed, please try again later',
+      500
+    );
+    return next(error);
+  }
+
+  console.log("DEBUG -- products-controller -- working 3");
+  if (!productsForCategories || productsForCategories.length === 0) {
+    return next(
+      new HttpError('Could not find products for the provided category id.', 404)
+    );
+  }
+
+  console.log("DEBUG -- products-controller -- working 4");
+  res.json({
+    products: productsForCategories
+  });
+  console.log("DEBUG -- Products-Controller - Fetching all products with cid successful!");
+};
+
 const createProduct = async (req, res, next) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
@@ -254,6 +284,7 @@ module.exports = {
   getProducts,
 	getProductById,
 	getProductsByUserId,
+	getProductsByCategoryId,
 	createProduct,
 	updateProduct,
 	deleteProduct

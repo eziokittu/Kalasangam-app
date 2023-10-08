@@ -13,6 +13,7 @@ import Footer from './shared/footer/Footer';
 import Main from './pages/main/Main';
 import Categories from './pages/categories/Categories';
 import Products from './pages/products/Products';
+import ProductsForCategory from './pages/products/ProductsForCategory';
 import MyProducts from './pages/myProducts/MyProducts';
 import UpdateProduct from './pages/myProducts/UpdateProduct';
 import CreateListing from './pages/createListing/CreateListing';
@@ -57,6 +58,7 @@ function App() {
           {/* <Route exact path='/' element={<MainNavigation/>} /> */}
           <Route exact path='/' element={<Main homeImage={IMAGES.image_home}/>} />
           <Route exact path='/categories' element={<Categories />} />
+          <Route exact path='/categories/:name' element={<ProductsForCategory />} />
           <Route exact path='/products' element={<Products />} />
           <Route exact path="/admin" element={<Admin />} />
           <Route exact path="/admin/update-category/:cid" element={<UpdateCategory />} />

@@ -10,6 +10,7 @@ const router = express.Router();
 router.get('/', productsController.getProducts)
 router.get('/:pid', productsController.getProductById);
 router.get('/user/:uid', productsController.getProductsByUserId);
+router.get('/categories/:name', productsController.getProductsByCategoryId);
 
 router.use(checkAuth);
 
