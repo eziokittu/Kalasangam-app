@@ -9,12 +9,10 @@ const productSchema = new Schema({
     creator: {type: mongoose.Types.ObjectId, required: true, ref: 'User'},
     
     createdAt: {type: Date, default: Date.now()},
-    socialMediaLinks: {
-        website: {type: String, default: 'https://www.google.com/' },
-        facebook: {type: String, default: 'https://www.facebook.com/' },
-        instagram: {type: String, default: 'https://www.instagram.com/' },
-        twitter: {type: String, default: 'https://twitter.com/' }
-    }
+    website: {type: String, default: 'https://www.google.com/' },
+    facebook: {type: String, default: 'https://www.facebook.com/' },
+    instagram: {type: String, default: 'https://www.instagram.com/' },
+    twitter: {type: String, default: 'https://twitter.com/' }
 });
 
 module.exports = mongoose.model('Product', productSchema);

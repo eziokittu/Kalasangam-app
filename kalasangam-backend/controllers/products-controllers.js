@@ -133,11 +133,10 @@ const createProduct = async (req, res, next) => {
     category,
 		creator: req.userData.userId,
 
-    // socialMediaLinks.website: website,
     website: website,
-    facebook,
-    instagram,
-    twitter,
+    facebook: facebook,
+    instagram: instagram,
+    twitter: twitter,
 	});
   // console.log("DEBUG ---- 2");
   // check if the user id provided exists or not

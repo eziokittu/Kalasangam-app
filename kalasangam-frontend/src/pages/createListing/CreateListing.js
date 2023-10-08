@@ -53,23 +53,27 @@ function CreateListing() {
     false
   );
 
-  const [socialMediaFormState, socialMediaInputHandler] = useForm(
-    {
-      facebook: {
-        value: 'https://www.facebook.com/'
-      },
-      instagram: {
-        value: 'https://www.instagram.com/'
-      },
-      twitter: {
-        value: 'https://twitter.com/'
-      },
-      website: {
-        value: 'https://www.google.com/'
-      }
-    },
-    false
-  );   
+  const [linkFb, setLinkFb] = useState('');
+  const [linkIg, setLinkIg] = useState('');
+  const [linkTw, setLinkTw] = useState('');
+  const [linkWb, setLinkWb] = useState('');
+  const getSocialLinkFb = (event) => {
+    setLinkFb(event.target.value);
+    console.log('The link found is - '+event.target.value);
+  }
+  const getSocialLinkIg = (event) => {
+    setLinkIg(event.target.value);
+    console.log('The link found is - '+event.target.value);
+  }
+  const getSocialLinkWb = (event) => {
+    setLinkWb(event.target.value);
+    console.log('The link found is - '+event.target.value);
+  }
+  const getSocialLinkTw = (event) => {
+    setLinkTw(event.target.value);
+    console.log('The link found is - '+event.target.value);
+  }
+     
   const navigate = useNavigate();
 
   const productSubmitHandler = async event => {
@@ -81,10 +85,15 @@ function CreateListing() {
       formData.append('category', category);
       formData.append('image', formState.inputs.image.value);
       
-      formData.append('facebook', socialMediaFormState.inputs.facebook.value);
-      formData.append('website', socialMediaFormState.inputs.website.value);
-      formData.append('instagram', socialMediaFormState.inputs.instagram.value);
-      formData.append('twitter', socialMediaFormState.inputs.twitter.value);
+      // if (linkFb===''){setLinkFb('https://www.facebook.com/');}
+      // if (linkTw===''){setLinkTw('https://twitter.com/');}
+      // if (linkWb===''){setLinkWb('https://www.google.com/');}
+      // if (linkIg===''){setLinkIg('https://www.instagram.com/');}
+      formData.append('facebook', linkFb);
+      formData.append('website', linkWb);
+      formData.append('instagram', linkIg);
+      formData.append('twitter', linkTw);
+
       // console.log("DEBUG --- CreateListing --- 1: ");
       await sendRequest('http://localhost:5000/api/products', 'POST', formData, {
         Authorization: 'Bearer ' + auth.token
@@ -170,41 +179,13 @@ function CreateListing() {
         <div className='c'>
         <br/><label className='text-xl font-medium text-gray-900 dark:text-white'>Social Media Links:</label><br/>
           <br/><label for="small-input" class="text-xs block mb-2 font-normal text-gray-900 dark:text-pink-200">FaceBook</label>
-          <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter facebook link' onSubmit={socialMediaInputHandler}></input>
+          <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter facebook link' onChange={getSocialLinkFb}></input>
           <br/><br/><label for="small-input" class="text-xs block mb-2 font-normal text-gray-900 dark:text-pink-200">Instagram</label>
-          <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Instagram link' onSubmit={socialMediaInputHandler}></input>
+          <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Instagram link' onChange={getSocialLinkIg}></input>
           <br/><br/><label for="small-input" class="text-xs block mb-2 font-normal text-gray-900 dark:text-pink-200">Twitter</label>
-          <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Twitter link' onSubmit={socialMediaInputHandler}></input>
+          <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Twitter link' onChange={getSocialLinkTw}></input>
           <br/><br/><label for="small-input" class="text-xs block mb-2 font-normal text-gray-900 dark:text-pink-200">Website</label>
-          <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Website link' onSubmit={socialMediaInputHandler}></input>
-          {/* <label className=''>Facebook</label>
-          <input
-            className=''
-            id="description"
-            type='text'
-            onSubmit={()=>{}}
-          />
-          <label className=''>Instagram</label>
-          <input
-            className=''
-            id="description"
-            type='text'
-            onSubmit={()=>{}}
-          />
-          <label className=''>Twitter</label>
-          <input
-            className=''
-            id="description"
-            type='text'
-            onSubmit={()=>{}}
-          />
-          <label className=''>Website</label>
-          <input
-            className=''
-            id="description"
-            type='text'
-            onSubmit={()=>{}}
-          /> */}
+          <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Website link' onChange={getSocialLinkWb}></input>
         </div>
 
         {/* Submit button for adding product */}

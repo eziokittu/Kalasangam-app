@@ -76,10 +76,10 @@ const ProductItem = props => {
 
         <div className="card-links">
           {/* <link to='https://stackoverflow.com/questions/50644976/react-button-onclick-redirect-page'>Website</link> */}
-          <button onClick={()=>{window.open(`${props.socialMediaLinks.website}`, '_blank')}}>Website</button>
-          <button onClick={()=>{window.open(`${props.socialMediaLinks.instagram}`, '_blank')}}>Instagram</button>
-          <button onClick={()=>{window.open(`${props.socialMediaLinks.facebook}`, '_blank')}}>Facebook</button>
-          <button onClick={()=>{window.open(`${props.socialMediaLinks.twitter}`, '_blank')}}>Twitter</button>
+          <button onClick={()=>{window.open(`${props.website}`, '_blank')}}>Website</button>
+          <button onClick={()=>{window.open(`${props.instagram}`, '_blank')}}>Instagram</button>
+          <button onClick={()=>{window.open(`${props.facebook}`, '_blank')}}>Facebook</button>
+          <button onClick={()=>{window.open(`${props.twitter}`, '_blank')}}>Twitter</button>
         </div>
 
         {auth.userId === props.creatorId && (

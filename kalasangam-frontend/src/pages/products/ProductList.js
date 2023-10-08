@@ -29,7 +29,11 @@ const ProductList = props => {
             title={product.title}
             description={product.description}
             creatorId={product.creator}
-            socialMediaLinks={product.socialMediaLinks}
+
+            facebook={product.facebook}
+            instagram={product.instagram}
+            twitter={product.twitter}
+            website={product.website}
             // onDelete={props.onDeleteproduct}
           />
         ))}
