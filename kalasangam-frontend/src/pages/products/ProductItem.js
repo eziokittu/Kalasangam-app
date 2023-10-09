@@ -64,7 +64,7 @@ const ProductItem = props => {
         </p>
       </Modal>
 
-      <Card className="custom-card">
+      <Card className="custom-card ">
         {isLoading && <LoadingSpinner asOverlay />}
 
         <Card.Img variant="top" src={`http://localhost:5000/${props.image}`} />

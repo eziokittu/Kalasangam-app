@@ -1,0 +1,66 @@
+/* Replace these styles with your desired Tailwind CSS styles */
+
+/* Pagination container */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Page item */
+  .page-item {
+    padding: .25rem;
+    margin: 2rem .5rem;
+  }
+  
+  /* Page link */
+  .page-link {
+    cursor: pointer;
+    padding: 6px 12px;
+    background-color: #4a90e2; /* Replace with your desired background color */
+    color: #fff; /* Replace with your desired text color */
+    border: 1px solid #4a90e2; /* Replace with your desired border color */
+    border-radius: px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  
+    /* Add hover styles */
+    &:hover {
+      background-color: #3572b0; 
+    }
+  }
+  
+  /* Active page link */
+  .active .page-link {
+    background-color: #0080ff; /* Replace with your desired active background color */
+  }
+  
+  /* Previous and Next buttons */
+  .page-item.previous, .page-item.next {
+    margin: 0 4px;
+  }
+  
+  /* Previous and Next button links */
+  .page-item.previous .page-link, .page-item.next .page-link {
+    padding: 6px 12px;
+    background-color: #4a90e2; /* Replace with your desired background color */
+    color: #fff; /* Replace with your desired text color */
+    border: 1px solid #4a90e2; /* Replace with your desired border color */
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  
+    /* Add hover styles */
+    &:hover {
+      background-color: #3572b0; /* Replace with your desired hover background color */
+    }
+  }
+  
+  /* Previous and Next button links when disabled */
+  .page-item.previous.disabled .page-link, .page-item.next.disabled .page-link {
+    background-color: #ccc; /* Replace with your desired disabled background color */
+    color: #888; /* Replace with your desired disabled text color */
+    cursor: not-allowed;
+    border: 1px solid #ccc; /* Replace with your desired disabled border color */
+  }
+  
