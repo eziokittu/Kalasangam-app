@@ -115,33 +115,37 @@ const Auth = () => {
   }
 
   return (
-    <React.Fragment>
+    <div className='flex justify-center insideBody '>
+      <ErrorModal error={error} onClear={clearError} />
       {auth.isLoggedIn && auth.isAdmin &&(
-        <div className='center insideBody'>
+        <div className='center'>
           You are logged in as an Admin!
           <br />
           To login as an user, you need to logout!
         </div>
       )}
       {auth.isLoggedIn && !auth.isAdmin &&(
-        <div className='center insideBody'>
+        <div className='center'>
           You are logged in as an User!
         </div>
       )}
       {!auth.isLoggedIn && (
-      <div>
+      <div className='text-center w-200'>
         <button
-          className='center insideBody'
+          className=' text-cyan-500 underline border hover:text-cyan-400 active:text-cyan-300 '
           onClick={clickIsAdminHandler}
         >
-          Login as Admin
+          Login as Admin?
         </button>
-        <ErrorModal error={error} onClear={clearError} />
-        <Card className="authentication">
+        <br/>
+        <br/>
+        <Card className="">
           {isLoading && <LoadingSpinner asOverlay />}
           <h2 className='heading'>Login Required</h2>
           <hr />
-          <form onSubmit={authSubmitHandler}>
+          <form 
+            onSubmit={authSubmitHandler}
+          >
             {!isLoginMode && (
               <Input
                 element="input"
@@ -189,7 +193,7 @@ const Auth = () => {
         </Card>
       </div>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 
