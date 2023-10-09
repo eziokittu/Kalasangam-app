@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 // import categoryImages from '../../storedData/categories';
 
 import CategoryList from './CategoryList';
@@ -27,11 +28,22 @@ function Categories() {
     fetchCategories();
   }, [sendRequest]);
 
+  const navigate = useNavigate();
+
   return (
     <React.Fragment >
       <div className='insideBody'> 
         <h3 className='center'>Choose a category below to browse the products</h3>
       </div>
+
+      <br/>
+
+      <div className='text-center'> 
+        <button className="text-teal-500 bg-transparent border border-solid border-teal-500 hover:bg-teal-500 hover:text-rose-200 active:bg-teal-600 font-bold text-lg px-4 py-2 rounded-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onc onClick={()=>{navigate('/products')}}>
+          Browse Products From All Categories
+        </button>
+      </div>
+
       <div className='center'>
         <ErrorModal error={error} onClear={clearError} />
         {isLoading && (

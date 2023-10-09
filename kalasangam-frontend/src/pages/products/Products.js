@@ -27,17 +27,18 @@ function Products() {
   }, [sendRequest]);
 
   return (
-    <React.Fragment>
+    <div className='center insideBody'>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && (
         <div className="center">
           <LoadingSpinner />
         </div>
       )}
+      <h3>Loading products...</h3>
       {!isLoading && loadedProducts && (
         <ProductList items={loadedProducts} />
       )}
-    </React.Fragment>
+    </div>
   );
 }
 

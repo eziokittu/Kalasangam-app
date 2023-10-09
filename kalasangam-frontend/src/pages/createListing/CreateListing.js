@@ -184,8 +184,9 @@ function CreateListing() {
           <input type="text" id="small-input" class="w-[85%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter Website link' onChange={getSocialLinkWb}></input>
         </div>
 
+
         {/* Submit button for adding product */}
-        <div className='button-submit'>
+        <div className='button-submit mt-5'>
           <Button type="submit" disabled={!formState.isValid}>
             ADD PRODUCT
           </Button>
