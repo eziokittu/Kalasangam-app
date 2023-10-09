@@ -9,7 +9,7 @@ const NavLinks = props => {
   const auth = useContext(AuthContext);
 
   return (
-    // <ul className='flex justify-end'>
+    // <ul className='flex flex-col items-center justify-center m-0 p-0 w-full h-full'>
     //   <li><ul>
     //     <li><NavLink to="/" className="nav__logo"><i className="ri-leaf-fill"></i>{props.appname}</NavLink></li>
     //     <li>KalaSangam</li>
@@ -24,7 +24,7 @@ const NavLinks = props => {
     // </ul>
     <ul className="nav-links">
       <li>
-        <NavLink to="/" exact>Home</NavLink>
+        <NavLink to="/" className="nav__logo"><i className="ri-leaf-fill"></i>KalaSangam</NavLink>
       </li>
       <li>
         <NavLink to="/categories" exact>Categories</NavLink>
@@ -64,6 +64,7 @@ const NavLinks = props => {
           <NavLink to="/auth" className="nav__link active-link">LOGIN</NavLink>
         </li>
       )}
+      
 
     </ul>
   );

@@ -14,7 +14,8 @@ function Pagination() {
     const getNumberOfPages = async () => {
       const res = await fetch(
         // `http://localhost:3004/comments?_page=1&_limit=${limit}`
-        `https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=${limit}`
+        `http://localhost:5000/api/products?_=age=${currentPage}&_limit=${limit}`
+        // `https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=${limit}`
       );
       const data = await res.json();
       const total = res.headers.get("x-total-count");
@@ -29,7 +30,8 @@ function Pagination() {
   const fetchProducts = async (currentPage) => {
     const res = await fetch(
       // `http://localhost:3004/comments?_page=${currentPage}&_limit=${limit}`
-      `https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=${limit}`
+      `http://localhost:5000/api/products?_=age=${currentPage}&_limit=${limit}`
+      // `https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=${limit}`
     );
     const data = await res.json();
     return data;

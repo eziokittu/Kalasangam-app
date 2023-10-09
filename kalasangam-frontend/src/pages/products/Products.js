@@ -4,7 +4,7 @@ import '../../reusable/reusable.css'; // Adjust the path based on your structure
 // import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import ProductList from './ProductList';
-import Pagination from '../../reusable/Pagination/Pagination';
+// import Pagination from '../../reusable/Pagination/Pagination';
 import ErrorModal from '../../reusable/UIElements/ErrorModal';
 import LoadingSpinner from '../../reusable/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../reusable/hooks/http-hook';
@@ -40,7 +40,7 @@ function Products() {
       {!isLoading && loadedProducts && (
         <ProductList items={loadedProducts} />
       )}
-      <Pagination />
+      {/* <Pagination /> */}
     </div>
   );
 }
