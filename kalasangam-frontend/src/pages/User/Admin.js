@@ -73,7 +73,7 @@ const Admin = () => {
         <br/>
         <input type="text" id="admin-name" className="w-[85%] sm:w-[60%] lg:w-[35%] p-2 mb-1 text-gray-900 border border-gray-300 rounded-lg  dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 dark:border-sky-950 " placeholder='Enter name' value={name} onChange={(event) => setName(event.target.value)}></input>
         <br/>
-        <input type="text" id="admin-password" className="w-[85%] sm:w-[60%] lg:w-[35%] mb-1 p-2 text-gray-900 border border-gray-300 rounded-lg dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800 border-sky-600 " placeholder='Enter password' value={password} onChange={(event) => setPassword(event.target.value)}></input>
+        <input type="text" id="admin-password" className="w-[85%] sm:w-[60%] lg:w-[35%] mb-1 p-2 text-gray-900 border border-gray-300 rounded-lg dark:bg-rose-200 dark:placeholder-gray-500 dark:text-gray-800  " placeholder='Enter password' value={password} onChange={(event) => setPassword(event.target.value)}></input>
         <br/>
         <button type="submit" className="text-teal-500 bg-transparent border border-solid border-teal-500 hover:bg-teal-500 hover:text-rose-200 active:bg-teal-600 font-bold text-lg px-4 py-2 rounded-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
       >
