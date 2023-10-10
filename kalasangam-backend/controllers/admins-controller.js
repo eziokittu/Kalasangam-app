@@ -6,6 +6,23 @@ const jwt = require('jsonwebtoken');
 const HttpError = require('../models/http-error');
 const Admin = require('../models/admin');
 
+const getAdmin = async (req, res, next) => {
+	const aid = req.params['aid'];
+	console.log('DEBUG -- admins-controller.js -- 1: '+aid);
+	let admin;
+	try {
+	  admin = await Aser.findById(aid);
+	  console.log('DEBUG -- admins-controller.js -- 2: '+admin.name);
+	} catch (err) {
+	  const error = new HttpError(
+		'Fetching admin failed, please try again later.',
+		500
+	  );
+	  return next(error);
+	}
+	res.json({admin: admin});
+};
+
 const adminLogin = async (req, res, next) => {
 	const { name, password } = req.body;
 
@@ -77,5 +94,6 @@ const adminLogin = async (req, res, next) => {
 };
   
 module.exports = {
+	getAdmin, 
 	adminLogin
 };

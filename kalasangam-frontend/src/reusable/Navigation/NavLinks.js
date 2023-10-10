@@ -52,12 +52,16 @@ const NavLinks = props => {
           <NavLink to={`/${auth.userId}/create-listing`}>Create Listing</NavLink>
         </li>
       )}
-
       {auth.isLoggedIn && (
+        <li>
+          <NavLink to={`/profile/${auth.userId}`}>Profile</NavLink>
+        </li>
+      )}
+      {/* {auth.isLoggedIn && (
         <li>
           <button onClick={auth.logout}>LOGOUT</button>
         </li>
-      )}
+      )} */}
       
       {!auth.isLoggedIn && (
         <li className="nav__login">

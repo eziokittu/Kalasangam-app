@@ -20,6 +20,7 @@ import CreateListing from './pages/createListing/CreateListing';
 import AddCategory from './pages/categories/AddCategory';
 import UpdateCategory from './pages/categories/UpdateCategory';
 import { AuthContext } from './reusable/context/auth-context';
+import Profile from './pages/User/Profile';
 import Auth from './pages/User/Auth';
 import Admin from './pages/User/Admin';
 import { useAuth } from './reusable/hooks/auth-hook';
@@ -63,6 +64,7 @@ function App() {
           <Route exact path="/admin" element={<Admin />} />
           <Route exact path="/admin/update-category/:cid" element={<UpdateCategory />} />
           <Route exact path="/admin/create-category" element={<AddCategory />} />
+          <Route exact path="/profile/:uid" element={<Profile />} />
           <Route exact path="/auth" element={<Auth />} />
         </Routes>
         

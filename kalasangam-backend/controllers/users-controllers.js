@@ -20,6 +20,24 @@ const getUsers = async (req, res, next) => {
   res.json({users: users.map(user => user.toObject({ getters: true }))});
 };
 
+const getUser = async (req, res, next) => {
+  const uid = req.params['uid'];
+  console.log('DEBUG -- user-controller.js -- 1: '+uid);
+  let user;
+  try {
+    // user = await User.find();
+    user = await User.findById(uid);
+    console.log('DEBUG -- user-controller.js -- 2: '+user.name);
+  } catch (err) {
+    const error = new HttpError(
+      'Fetching user failed, please try again later.',
+      500
+    );
+    return next(error);
+  }
+  res.json({user: user});
+};
+
 const signup = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -169,6 +187,7 @@ const login = async (req, res, next) => {
 
 module.exports = {
 	getUsers,
+  getUser,
 	signup,
 	login
 };
