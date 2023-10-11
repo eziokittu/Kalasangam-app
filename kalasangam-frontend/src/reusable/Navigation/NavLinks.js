@@ -9,17 +9,33 @@ const NavLinks = props => {
   const auth = useContext(AuthContext);
 
   return (
-    // <ul className='flex flex-col items-center justify-center m-0 p-0 w-full h-full'>
-    //   <li><ul>
-    //     <li><NavLink to="/" className="nav__logo"><i className="ri-leaf-fill"></i>{props.appname}</NavLink></li>
-    //     <li>KalaSangam</li>
+    // <ul className='nav-links'>
+    //   <li><ul className='flex flex-row justify-between'>
+    //     <li className='m-[1rem]'>
+    //       <NavLink to="/" className="nav__logo">
+    //         <i className="ri-leaf-fill"/>
+    //         KalaSangam
+    //       </NavLink>
+    //     </li>
     //   </ul></li>
-    //   <li><ul>
-    //     <li>Categories</li>
-    //     <li>Products</li>
+    //   <li><ul className='flex flex-col justify-around'>
+    //     <li className='m-[1rem]'>
+    //       <NavLink to="/categories" exact>
+    //         Categories
+    //       </NavLink>
+    //     </li>
+    //     <li className='m-[1rem]'>
+    //       <NavLink to="/products" exact>
+    //         Products
+    //       </NavLink>
+    //     </li>
     //   </ul></li>
-    //   <li><ul>
-    //     <li>Login</li>
+    //   <li><ul className='flex flex-col justify-around'>
+    //   <li className='m-[1rem]'>
+    //       <NavLink to="/products" exact>
+    //         Login
+    //       </NavLink>
+    //     </li>
     //   </ul></li>
     // </ul>
     <ul className="nav-links">

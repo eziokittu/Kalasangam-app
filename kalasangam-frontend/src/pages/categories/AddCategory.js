@@ -14,7 +14,6 @@ import {
 } from '../../reusable/util/validators';
 
 import './AddCategory.css';
-import '../../reusable/reusable.css'; // Adjust the path based on your structure
 
 function AddCategory() {
   const auth = useContext(AuthContext);
