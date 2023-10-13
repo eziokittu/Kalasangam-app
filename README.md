@@ -1,6 +1,5 @@
 # Kalasangam-app
 **Refer to the SRS document for details.** 
-A prototype is being created for the backend part, which will replace the backend for this website
 
 --- **Members of this project** ---
 1. Archisha Verma--------------------(Roll - 2105700)-------([GitHub Profile Link](https://github.com/archishaverma))
@@ -12,23 +11,6 @@ A prototype is being created for the backend part, which will replace the backen
 7. Sandali Dev Sinha------------------(Roll - 21052448)------([GitHub Profile Link](https://github.com/DevSinhaSandali))
 8. Shyamantak Mandal---------------(Roll - 21052800)------([GitHub Profile Link](https://github.com/Syamantakse))
 
-
-##Preview Images
-![home_1](https://github.com/eziokittu/Kalasangam-app/assets/52044555/265abf3f-2a08-4096-b49c-dbfa7dc4b631)
-
-![home_2](https://github.com/eziokittu/Kalasangam-app/assets/52044555/dfc27666-eafe-494e-bb49-1719d46d0160)
-
-![home_3](https://github.com/eziokittu/Kalasangam-app/assets/52044555/6862c680-c8f0-4c08-b114-4983ec8a28e1)
-
-backend work is going on!
-1. These things are working ---
-     a. login logout signup, 
-     b. create-listing (to create a product with a title, 1 image and description)
-     c. View products (view all the products)
-2. The other parts of the backend that are being worked on are -
-     a. categories section (for searching different products based on category), 
-     b. more info for the products (like Instagram / Facebook links, category tags...),
-     c. my products section (for updating and deleting products)
 
 To run the frontend part follow these steps ...
 ----For GUI----
@@ -45,3 +27,17 @@ To run the frontend part follow these steps ...
      ii.     npm install
      iii.    npm start
 7. This should run in your web browser "http://localhost:3000/"
+
+
+##Preview Images
+![Screenshot (69)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/691ee162-5276-4c30-bc8b-9d305ffa96d6)
+![Screenshot (73)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/c13496fb-c41b-4033-a5c7-72985b735fe0)
+![Screenshot (75)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/0a1e1714-b3e4-4ce4-baf8-477a8b00fda7)
+![Screenshot (80)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/51d0636a-e41c-4140-9249-2b9a16f85277)
+![Screenshot (81)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/3b8bfc01-2a11-4398-b684-fef98ce98549)
+![Screenshot (83)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/441efea1-ba42-4928-8a8e-9e9707e2e1d6)
+![Screenshot (84)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/bc475cb0-e674-45a8-8c9b-0f10663349fa)
+![Screenshot (85)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/83274872-2ca1-496f-a7bb-926553bef2e4)
+![Screenshot (88)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/51b1044e-ea21-400a-b282-1acce3f0969b)
+![Screenshot (89)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/5e406da2-51ba-46c4-9fd3-ebd272495d8b)
+![Screenshot (90)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/1936d334-2107-4c9f-9869-069147794f7f)
