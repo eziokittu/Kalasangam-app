@@ -29,7 +29,7 @@ To run the frontend part follow these steps ...
 7. This should run in your web browser "http://localhost:3000/"
 
 
-##Preview Images
+## Preview Images
 ![Screenshot (69)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/691ee162-5276-4c30-bc8b-9d305ffa96d6)
 ![Screenshot (73)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/c13496fb-c41b-4033-a5c7-72985b735fe0)
 ![Screenshot (75)](https://github.com/eziokittu/Kalasangam-app/assets/52044555/0a1e1714-b3e4-4ce4-baf8-477a8b00fda7)
