@@ -7,7 +7,7 @@ A prototype is being created for the backend part, which will replace the backen
 2. Anuroop Roy-----------------------(Roll - 21051543)------([GitHub Profile Link](https://github.com/aroy1106))
 3. Bodhisatta Bhattacharjee (Me)----(Roll - 22057025)------([GitHub Profile Link](https://github.com/eziokittu))
 4. Muskan Pritam---------------------(Roll - 2105974)-------([Github Profile Link](https://github.com/MuskanP2021))
-5. Pradyumna Poddar-----------------(Roll - 2105216)-------(GitHub Profile Link - )
+5. Pradyumna Poddar-----------------(Roll - 2105216)-------([Github Profile Link](https://github.com/Pradyunna))
 6. Pratyush Adhikari------------------(Roll - 2105810)-------([GitHub Profile Link](https://github.com/Pratyush-Adhikari1507))
 7. Sandali Dev Sinha------------------(Roll - 21052448)------([GitHub Profile Link](https://github.com/DevSinhaSandali))
 8. Shyamantak Mandal---------------(Roll - 21052800)------([GitHub Profile Link](https://github.com/Syamantakse))
